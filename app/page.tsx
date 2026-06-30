@@ -39,6 +39,10 @@ export default function Home() {
     <main className="landing-page" aria-label="Victor Qi portfolio landing page">
       <div className="landing-backdrop" />
 
+      <a href="/" className="site-wordmark" aria-label="Victor Qi home">
+        Victor Qi
+      </a>
+
       <nav className="top-nav" aria-label="Primary navigation">
         <a href="/projects">My Projects</a>
         <a href="#about-me">About Me</a>

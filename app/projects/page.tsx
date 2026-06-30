@@ -19,17 +19,23 @@ const currentProjects = [
     name: "Tablr",
     logo: "/projects/tablr-logo.png",
     logoAlt: "Tablr logo",
+    href: "https://jointablr.com",
   },
   {
     name: "The Fractional Few",
     logo: "/projects/fractional-few-logo.png",
     logoAlt: "The Fractional Few logo",
+    href: "https://whop.com/the-fractional-few",
   },
 ];
 
 export default function ProjectsPage() {
   return (
     <main className="projects-page">
+      <Link href="/" className="site-wordmark" aria-label="Victor Qi home">
+        Victor Qi
+      </Link>
+
       <nav className="projects-nav" aria-label="Projects navigation">
         <Link href="/">Home</Link>
         <Link href="/#about-me">About Me</Link>
@@ -44,7 +50,13 @@ export default function ProjectsPage() {
 
       <section className="project-list" aria-label="Current projects">
         {currentProjects.map((project, index) => (
-          <article className="project-row" key={project.name}>
+          <a
+            href={project.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="project-row"
+            key={project.name}
+          >
             <div className="project-index">{String(index + 1).padStart(2, "0")}</div>
             <div className="project-logo-wrap">
               <Image
@@ -61,7 +73,7 @@ export default function ProjectsPage() {
               <h2 className={`${coverScrawl.className} project-name`}>{project.name}</h2>
               <p className="project-placeholder">Description coming soon.</p>
             </div>
-          </article>
+          </a>
         ))}
       </section>
     </main>
