@@ -177,10 +177,30 @@ body {
 
 .social-icon:hover,
 .social-icon:focus-visible {
-  color: var(--ye-green);
-  filter: drop-shadow(0 0 15px rgba(19, 242, 53, 0.42)) drop-shadow(0 4px 16px rgba(0, 0, 0, 0.72));
+  filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.72));
   transform: translateY(-2px) scale(1.06);
   outline: none;
+}
+
+.social-linkedin:hover,
+.social-linkedin:focus-visible {
+  color: #0a66c2;
+}
+
+.social-instagram:hover,
+.social-instagram:focus-visible {
+  color: #e4405f;
+}
+
+.social-x:hover,
+.social-x:focus-visible {
+  color: #000000;
+  filter: drop-shadow(0 1px 7px rgba(255, 255, 255, 0.42)) drop-shadow(0 4px 16px rgba(0, 0, 0, 0.72));
+}
+
+.social-email:hover,
+.social-email:focus-visible {
+  color: #ea4335;
 }
 
 .social-icon:active {

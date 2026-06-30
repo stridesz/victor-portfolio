@@ -11,21 +11,25 @@ const socialLinks = [
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/victor-qi/",
+    variant: "linkedin",
     Icon: LinkedInIcon,
   },
   {
     label: "Instagram",
     href: "https://www.instagram.com/victor.qii/",
+    variant: "instagram",
     Icon: InstagramIcon,
   },
   {
     label: "X",
     href: "https://x.com/stridesoles",
+    variant: "x",
     Icon: XIcon,
   },
   {
     label: "Email",
     href: "mailto:victorqi0707@gmail.com",
+    variant: "email",
     Icon: MailIcon,
   },
 ];
@@ -50,13 +54,13 @@ export default function Home() {
         </h1>
 
         <nav className="social-links" aria-label="Social links">
-          {socialLinks.map(({ label, href, Icon }) => (
+          {socialLinks.map(({ label, href, variant, Icon }) => (
             <a
               key={label}
               href={href}
               target={href.startsWith("http") ? "_blank" : undefined}
               rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-              className="social-icon"
+              className={`social-icon social-${variant}`}
               aria-label={label}
               title={label}
             >
