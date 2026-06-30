@@ -40,9 +40,7 @@ export default function Home() {
       <div className="landing-backdrop" />
 
       <nav className="top-nav" aria-label="Primary navigation">
-        <a href="https://github.com/stridesz" target="_blank" rel="noopener noreferrer">
-          My Projects
-        </a>
+        <a href="/projects">My Projects</a>
         <a href="#about-me">About Me</a>
       </nav>
 
