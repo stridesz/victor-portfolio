@@ -1,17 +1,15 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
-  title: "Victor Qi - Business & Technology Portfolio",
-  description: "Northeastern business student with entrepreneurial projects in AI, fintech, and SaaS.",
+  title: "Victor Qi",
+  description: "Personal portfolio of Victor Qi.",
   openGraph: {
-    title: "Victor Qi - Business & Technology Portfolio",
-    description: "Northeastern business student with entrepreneurial projects in AI, fintech, and SaaS.",
+    title: "Victor Qi",
+    description: "Personal portfolio of Victor Qi.",
     images: ["/og-image.png"],
   },
   twitter: {
@@ -34,18 +32,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.className} h-full scroll-smooth antialiased`}>
+    <html lang="en" className={inter.className}>
       <head>
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2" />
         <link rel="shortcut icon" href="/favicon.ico?v=2" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" />
       </head>
-      <body className="min-h-full flex flex-col bg-[#070707] text-white">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
