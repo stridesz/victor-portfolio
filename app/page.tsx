@@ -41,18 +41,16 @@ const currentProjects = [
     logo: "/projects/tablr-logo.png",
     logoAlt: "Tablr logo",
     href: "https://jointablr.com",
-    status: "Building",
     description:
-      "A social dining app for college students — matched by shared interests, not swipes. Find someone to grab ramen with tonight. Not a dating app.",
+      "A social dining app for college students, matched by shared interests, not swipes. Whether it's grabbing ramen tonight or listening to the new Drake album that just dropped at midnight, find someone to do it with. Not a dating app.",
   },
   {
     name: "The Fractional Few",
     logo: "/projects/fractional-few-logo.png",
     logoAlt: "The Fractional Few logo",
     href: "https://whop.com/the-fractional-few",
-    status: "Building",
     description:
-      "A group focused on reverse stock splits — a quirk in the market most people miss. We surface the opportunities and the info to act on them.",
+      "A group focused on reverse stock splits, a quirk in the market most people miss. We surface the opportunities and the info to act on them.",
   },
 ];
 
@@ -98,43 +96,45 @@ export default function Home() {
 
       <section className="projects-section" id="projects" aria-labelledby="projects-title">
         <div className="projects-hero">
-          <p className="projects-kicker">Current Projects</p>
           <h2 id="projects-title" className="projects-title">
             My Projects
           </h2>
         </div>
 
-        <div className="project-list" aria-label="Current projects">
-          {currentProjects.map((project, index) => (
-            <div className="project-row" key={project.name}>
-              <div className="project-index">{String(index + 1).padStart(2, "0")}</div>
-              <div className="project-logo-wrap">
-                <Image
-                  src={project.logo}
-                  alt={project.logoAlt}
-                  width={900}
-                  height={900}
-                  className="project-logo"
-                  priority={index === 0}
-                />
-              </div>
-              <div className="project-copy">
-                <div className="project-name-row">
-                  <h3 className={`${coverScrawl.className} project-name`}>{project.name}</h3>
-                  <span className="project-badge">{project.status}</span>
+        <div className="project-group">
+          <p className="project-group-label">Current Projects</p>
+
+          <div className="project-list" aria-label="Current projects">
+            {currentProjects.map((project, index) => (
+              <div className="project-row" key={project.name}>
+                <div className="project-index">{String(index + 1).padStart(2, "0")}</div>
+                <div className="project-logo-wrap">
+                  <Image
+                    src={project.logo}
+                    alt={project.logoAlt}
+                    width={900}
+                    height={900}
+                    className="project-logo"
+                    priority={index === 0}
+                  />
                 </div>
-                <p className="project-description">{project.description}</p>
-                <a
-                  href={project.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="project-cta"
-                >
-                  Check it out ↗
-                </a>
+                <div className="project-copy">
+                  <div className="project-name-row">
+                    <h3 className={`${coverScrawl.className} project-name`}>{project.name}</h3>
+                    <a
+                      href={project.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="project-cta"
+                    >
+                      Check it out ↗
+                    </a>
+                  </div>
+                  <p className="project-description">{project.description}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
