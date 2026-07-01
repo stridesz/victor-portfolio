@@ -1,4 +1,5 @@
 import type { SVGProps } from "react";
+import Image from "next/image";
 import { Covered_By_Your_Grace } from "next/font/google";
 
 const coverScrawl = Covered_By_Your_Grace({
@@ -34,42 +35,105 @@ const socialLinks = [
   },
 ];
 
+const currentProjects = [
+  {
+    name: "Tablr",
+    logo: "/projects/tablr-logo.png",
+    logoAlt: "Tablr logo",
+    href: "https://jointablr.com",
+  },
+  {
+    name: "The Fractional Few",
+    logo: "/projects/fractional-few-logo.png",
+    logoAlt: "The Fractional Few logo",
+    href: "https://whop.com/the-fractional-few",
+  },
+];
+
 export default function Home() {
   return (
-    <main className="landing-page" aria-label="Victor Qi portfolio landing page">
-      <div className="landing-backdrop" />
-
+    <main className="landing-page" aria-label="Victor Qi portfolio">
       <a href="/" className="site-wordmark" aria-label="Victor Qi home">
         Victor Qi
       </a>
 
       <nav className="top-nav" aria-label="Primary navigation">
-        <a href="/projects">My Projects</a>
+        <a href="#projects">My Projects</a>
         <a href="#about-me">About Me</a>
       </nav>
 
-      <section className="landing-content">
-        <h1 className={`${coverScrawl.className} ye-title`} aria-label="I love being Victor it's awesome">
-          <span>I love being</span>
-          <span>Victor</span>
-          <span>it&apos;s awesome</span>
-        </h1>
+      <section className="hero-section" id="hero">
+        <div className="landing-backdrop" />
 
-        <nav className="social-links" aria-label="Social links">
-          {socialLinks.map(({ label, href, variant, Icon }) => (
+        <div className="landing-content">
+          <h1 className={`${coverScrawl.className} ye-title`} aria-label="I love being Victor it's awesome">
+            <span>I love being</span>
+            <span>Victor</span>
+            <span>it&apos;s awesome</span>
+          </h1>
+
+          <nav className="social-links" aria-label="Social links">
+            {socialLinks.map(({ label, href, variant, Icon }) => (
+              <a
+                key={label}
+                href={href}
+                target={href.startsWith("http") ? "_blank" : undefined}
+                rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                className={`social-icon social-${variant}`}
+                aria-label={label}
+                title={label}
+              >
+                <Icon aria-hidden="true" />
+              </a>
+            ))}
+          </nav>
+        </div>
+      </section>
+
+      <section className="projects-section" id="projects" aria-labelledby="projects-title">
+        <div className="projects-hero">
+          <p className="projects-kicker">Current Projects</p>
+          <h2 id="projects-title" className={`${coverScrawl.className} projects-title`}>
+            My Projects
+          </h2>
+        </div>
+
+        <div className="project-list" aria-label="Current projects">
+          {currentProjects.map((project, index) => (
             <a
-              key={label}
-              href={href}
-              target={href.startsWith("http") ? "_blank" : undefined}
-              rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-              className={`social-icon social-${variant}`}
-              aria-label={label}
-              title={label}
+              href={project.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="project-row"
+              key={project.name}
             >
-              <Icon aria-hidden="true" />
+              <div className="project-index">{String(index + 1).padStart(2, "0")}</div>
+              <div className="project-logo-wrap">
+                <Image
+                  src={project.logo}
+                  alt={project.logoAlt}
+                  width={900}
+                  height={900}
+                  className="project-logo"
+                  priority={index === 0}
+                />
+              </div>
+              <div className="project-copy">
+                <h3 className={`${coverScrawl.className} project-name`}>{project.name}</h3>
+              </div>
             </a>
           ))}
-        </nav>
+        </div>
+      </section>
+
+      <section className="about-section" id="about-me" aria-labelledby="about-title">
+        <div className="about-hero">
+          <p className="about-kicker">About Me</p>
+          <h2 id="about-title" className={`${coverScrawl.className} about-title`}>
+            About Me
+          </h2>
+          <p className="about-placeholder">Bio coming soon.</p>
+        </div>
       </section>
     </main>
   );
