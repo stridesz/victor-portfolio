@@ -41,12 +41,18 @@ const currentProjects = [
     logo: "/projects/tablr-logo.png",
     logoAlt: "Tablr logo",
     href: "https://jointablr.com",
+    status: "Building",
+    description:
+      "A social dining app for college students — matched by shared interests, not swipes. Find someone to grab ramen with tonight. Not a dating app.",
   },
   {
     name: "The Fractional Few",
     logo: "/projects/fractional-few-logo.png",
     logoAlt: "The Fractional Few logo",
     href: "https://whop.com/the-fractional-few",
+    status: "Building",
+    description:
+      "A group focused on reverse stock splits — a quirk in the market most people miss. We surface the opportunities and the info to act on them.",
   },
 ];
 
@@ -93,20 +99,14 @@ export default function Home() {
       <section className="projects-section" id="projects" aria-labelledby="projects-title">
         <div className="projects-hero">
           <p className="projects-kicker">Current Projects</p>
-          <h2 id="projects-title" className={`${coverScrawl.className} projects-title`}>
+          <h2 id="projects-title" className="projects-title">
             My Projects
           </h2>
         </div>
 
         <div className="project-list" aria-label="Current projects">
           {currentProjects.map((project, index) => (
-            <a
-              href={project.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="project-row"
-              key={project.name}
-            >
+            <div className="project-row" key={project.name}>
               <div className="project-index">{String(index + 1).padStart(2, "0")}</div>
               <div className="project-logo-wrap">
                 <Image
@@ -119,9 +119,21 @@ export default function Home() {
                 />
               </div>
               <div className="project-copy">
-                <h3 className={`${coverScrawl.className} project-name`}>{project.name}</h3>
+                <div className="project-name-row">
+                  <h3 className={`${coverScrawl.className} project-name`}>{project.name}</h3>
+                  <span className="project-badge">{project.status}</span>
+                </div>
+                <p className="project-description">{project.description}</p>
+                <a
+                  href={project.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="project-cta"
+                >
+                  Check it out ↗
+                </a>
               </div>
-            </a>
+            </div>
           ))}
         </div>
       </section>
@@ -129,7 +141,7 @@ export default function Home() {
       <section className="about-section" id="about-me" aria-labelledby="about-title">
         <div className="about-hero">
           <p className="about-kicker">About Me</p>
-          <h2 id="about-title" className={`${coverScrawl.className} about-title`}>
+          <h2 id="about-title" className="about-title">
             About Me
           </h2>
           <p className="about-placeholder">Bio coming soon.</p>
