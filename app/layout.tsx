@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://victor-portfolio.vercel.app"),
+  metadataBase: new URL("https://victor-portfolio-chi.vercel.app"),
   title: "Victor Qi",
   description: "Victor Qi — business student, builder, and systems operator working across startups, AI, operations, and supply chain.",
   openGraph: {
