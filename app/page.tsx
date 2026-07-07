@@ -1,187 +1,129 @@
-import type { SVGProps } from "react";
-import Image from "next/image";
-import { Covered_By_Your_Grace } from "next/font/google";
-
-const coverScrawl = Covered_By_Your_Grace({
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
-});
-
-const socialLinks = [
-  {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/victor-qi/",
-    variant: "linkedin",
-    Icon: LinkedInIcon,
-  },
-  {
-    label: "Instagram",
-    href: "https://www.instagram.com/victor.qii/",
-    variant: "instagram",
-    Icon: InstagramIcon,
-  },
-  {
-    label: "X",
-    href: "https://x.com/stridesoles",
-    variant: "x",
-    Icon: XIcon,
-  },
-  {
-    label: "Email",
-    href: "mailto:victorqi0707@gmail.com",
-    variant: "email",
-    Icon: MailIcon,
-  },
-];
-
-const currentProjects = [
-  {
-    name: "Tablr",
-    logo: "/projects/tablr-logo.png",
-    logoAlt: "Tablr logo",
-    href: "https://jointablr.com",
-    description:
-      "A social dining app for college students, matched by shared interests, not swipes. Whether it's grabbing ramen tonight or listening to the new Drake album that just dropped at midnight, find someone to do it with. Not a dating app.",
-  },
-  {
-    name: "The Fractional Few",
-    logo: "/projects/fractional-few-logo.png",
-    logoAlt: "The Fractional Few logo",
-    href: "https://whop.com/the-fractional-few",
-    description:
-      "A group focused on reverse stock splits, a quirk in the market most people miss. We surface the opportunities and the info to act on them.",
-  },
-];
+import Link from "next/link";
+import { ArrowRight, Mail } from "lucide-react";
+import { ProjectCard } from "./components/ProjectCard";
+import { SectionHeader } from "./components/SectionHeader";
+import { SiteFooter } from "./components/SiteFooter";
+import { SiteNav } from "./components/SiteNav";
+import { StatusPill } from "./components/StatusPill";
+import { projects, proofPoints, socials } from "./data/site";
 
 export default function Home() {
   return (
-    <main className="landing-page" aria-label="Victor Qi portfolio">
-      <a href="/" className="site-wordmark" aria-label="Victor Qi home">
-        Victor Qi
-      </a>
+    <main className="site-shell">
+      <SiteNav />
 
-      <nav className="top-nav" aria-label="Primary navigation">
-        <a href="#projects">My Projects</a>
-        <a href="#about-me">About Me</a>
-      </nav>
-
-      <section className="hero-section" id="hero">
-        <div className="landing-backdrop" />
-
-        <div className="landing-content">
-          <h1 className={`${coverScrawl.className} ye-title`} aria-label="I love being Victor it's awesome">
-            <span>I love being</span>
-            <span>Victor</span>
-            <span>it&apos;s awesome</span>
-          </h1>
-
-          <nav className="social-links" aria-label="Social links">
-            {socialLinks.map(({ label, href, variant, Icon }) => (
-              <a
-                key={label}
-                href={href}
-                target={href.startsWith("http") ? "_blank" : undefined}
-                rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                className={`social-icon social-${variant}`}
-                aria-label={label}
-                title={label}
-              >
-                <Icon aria-hidden="true" />
+      <section className="hero section-pad" aria-labelledby="hero-title">
+        <div className="container hero__grid">
+          <div className="hero__copy">
+            <StatusPill tone="muted">Business · AI · Operations</StatusPill>
+            <h1 id="hero-title">Victor Qi</h1>
+            <p>
+              Business student, builder, and systems operator working across startups, AI, operations, and supply
+              chain.
+            </p>
+            <div className="hero__actions">
+              <Link className="button button--primary" href="/projects">
+                View Projects <ArrowRight aria-hidden="true" size={18} />
+              </Link>
+              <a className="button button--secondary" href="#contact">
+                Contact Me <Mail aria-hidden="true" size={18} />
               </a>
-            ))}
-          </nav>
+            </div>
+          </div>
+
+          <aside className="intro-card" aria-label="Victor Qi profile snapshot">
+            <span>Profile</span>
+            <p>
+              Northeastern business student with operating reps across resale, subscription products, events,
+              campus-facing startups, and AI/ERP work inside a linen export business.
+            </p>
+            <dl>
+              <div>
+                <dt>Focus</dt>
+                <dd>Supply chain, AI systems, operations</dd>
+              </div>
+              <div>
+                <dt>Builder mode</dt>
+                <dd>Useful products, cleaner handoffs, real execution</dd>
+              </div>
+            </dl>
+          </aside>
         </div>
       </section>
 
-      <section className="projects-section" id="projects" aria-labelledby="projects-title">
-        <div className="projects-hero">
-          <h2 id="projects-title" className="projects-title">
-            My Projects
-          </h2>
+      <section className="section-pad" id="projects" aria-labelledby="projects-title">
+        <div className="container section-stack">
+          <SectionHeader
+            eyebrow="Featured projects"
+            title="Current work with enough substance to show."
+            description="A short list of projects and communities I am building around student experiences, markets, and useful systems."
+          />
+          <div className="card-grid card-grid--two">
+            {projects.map((project, index) => (
+              <ProjectCard key={project.name} project={project} priority={index === 0} />
+            ))}
+          </div>
+          <Link className="inline-link" href="/projects">
+            View full project list <ArrowRight aria-hidden="true" size={17} />
+          </Link>
         </div>
+      </section>
 
-        <div className="project-group">
-          <p className="project-group-label">Current Projects</p>
-
-          <div className="project-list" aria-label="Current projects">
-            {currentProjects.map((project, index) => (
-              <div className="project-row" key={project.name}>
-                <div className="project-index">{String(index + 1).padStart(2, "0")}</div>
-                <div className="project-logo-wrap">
-                  <Image
-                    src={project.logo}
-                    alt={project.logoAlt}
-                    width={900}
-                    height={900}
-                    className="project-logo"
-                    priority={index === 0}
-                  />
-                </div>
-                <div className="project-copy">
-                  <div className="project-name-row">
-                    <h3 className={`${coverScrawl.className} project-name`}>{project.name}</h3>
-                    <a
-                      href={project.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="project-cta"
-                    >
-                      Check it out ↗
-                    </a>
-                  </div>
-                  <p className="project-description">{project.description}</p>
-                </div>
-              </div>
+      <section className="section-pad section-pad--muted" aria-labelledby="proof-title">
+        <div className="container section-stack">
+          <SectionHeader
+            eyebrow="Proof"
+            title="A compact record of real operating reps."
+            description="Ventures, internships, and execution-heavy work that shaped how I think about business systems."
+          />
+          <div className="proof-grid">
+            {proofPoints.map((item) => (
+              <article className="proof-card" key={item.label}>
+                <p>{item.label}</p>
+                <h3>{item.metric}</h3>
+                <span>{item.description}</span>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="about-section" id="about-me" aria-labelledby="about-title">
-        <div className="about-hero">
-          <p className="about-kicker">About Me</p>
-          <h2 id="about-title" className="about-title">
-            About Me
-          </h2>
-          <p className="about-placeholder">Bio coming soon.</p>
+      <section className="section-pad" aria-labelledby="blog-preview-title">
+        <div className="container writing-panel">
+          <SectionHeader
+            eyebrow="Writing"
+            title="Notes will live here when they earn the space."
+            description="No essays published yet. The good ones take a minute."
+          />
+          <Link className="button button--secondary" href="/blog">
+            View notes <ArrowRight aria-hidden="true" size={18} />
+          </Link>
         </div>
       </section>
+
+      <section className="section-pad contact-section" id="contact" aria-labelledby="contact-title">
+        <div className="container contact-card">
+          <div>
+            <StatusPill tone="muted">Contact</StatusPill>
+            <h2 id="contact-title">Have something worth building?</h2>
+            <p>Send a note if there is a project, role, or problem where clean execution matters.</p>
+          </div>
+          <div className="contact-links">
+            {socials.map((social) => (
+              <a
+                key={social.label}
+                href={social.href}
+                target={social.href.startsWith("http") ? "_blank" : undefined}
+                rel={social.href.startsWith("http") ? "noopener noreferrer" : undefined}
+              >
+                {social.label} <ArrowRight aria-hidden="true" size={16} />
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <SiteFooter />
     </main>
-  );
-}
-
-function LinkedInIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
-      <path d="M20.45 20.45h-3.56v-5.58c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.32 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13Zm1.78 13.02H3.54V9H7.1v11.45ZM22.23 0H1.77C.8 0 0 .77 0 1.72v20.56C0 23.23.8 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0Z" />
-    </svg>
-  );
-}
-
-function InstagramIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <rect x="3" y="3" width="18" height="18" rx="5" />
-      <circle cx="12" cy="12" r="4.1" />
-      <circle cx="17.35" cy="6.65" r="1" fill="currentColor" stroke="none" />
-    </svg>
-  );
-}
-
-function XIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
-      <path d="M18.9 2h3.28l-7.16 8.18L23.44 22h-6.6l-5.17-6.76L5.75 22H2.47l7.66-8.75L2.06 2h6.77l4.67 6.17L18.9 2Zm-1.15 17.92h1.82L7.84 3.97H5.9l11.85 15.95Z" />
-    </svg>
-  );
-}
-
-function MailIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <rect x="3" y="5" width="18" height="14" rx="2.4" />
-      <path d="m4.2 7 7.8 6.1L19.8 7" />
-    </svg>
   );
 }

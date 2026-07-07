@@ -1,21 +1,34 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"], display: "swap" });
+const geistSans = Geist({
+  subsets: ["latin"],
+  variable: "--font-geist-sans",
+  display: "swap",
+});
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://victor-portfolio.vercel.app"),
   title: "Victor Qi",
-  description: "Personal portfolio of Victor Qi.",
+  description: "Victor Qi — business student, builder, and systems operator working across startups, AI, operations, and supply chain.",
   openGraph: {
     title: "Victor Qi",
-    description: "Personal portfolio of Victor Qi.",
+    description: "Business student, builder, and systems operator working across startups, AI, operations, and supply chain.",
     images: ["/og-image.png"],
   },
   twitter: {
     card: "summary_large_image",
+    title: "Victor Qi",
+    description: "Business student, builder, and systems operator.",
+    images: ["/og-image.png"],
   },
-  metadataBase: new URL("https://victorqi.vercel.app"),
   icons: {
     icon: [
       { url: "/favicon-32x32.png?v=2", sizes: "32x32", type: "image/png" },
@@ -32,7 +45,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.className}>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <head>
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2" />
