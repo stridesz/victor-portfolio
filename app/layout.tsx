@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { AmbientGrid } from "./components/AmbientGrid";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -52,7 +53,10 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/favicon.ico?v=2" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" />
       </head>
-      <body>{children}</body>
+      <body>
+        <AmbientGrid />
+        {children}
+      </body>
     </html>
   );
 }
