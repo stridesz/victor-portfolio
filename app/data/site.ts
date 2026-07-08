@@ -55,23 +55,25 @@ export const projects: Project[] = [
 export const proofPoints: ProofPoint[] = [
   {
     label: "Stride Retail LLC",
-    metric: "$300K peak yearly revenue",
-    description: "Built and operated a sneaker resale business from sourcing through fulfillment.",
+    metric: "$280K Peak Yearly Revenue",
+    description:
+      "Started in 5th grade with sneaker resale, then expanded into Amazon FBA, ticket resale, wholesale sourcing, and fulfillment.",
   },
   {
     label: "Swipe Signals",
-    metric: "$300K ARR · 150+ 5★ reviews",
+    metric: "$35K Peak Monthly Recurring Revenue · 250 members",
     description: "Co-founded a subscription product with real customers, support load, and retention pressure.",
   },
   {
     label: "Huaren Linen",
     metric: "AI/ERP internship · 100+ staff taught",
     description:
-      "Worked on AI and ERP modernization inside the family linen/export business and taught AI fundamentals to staff.",
+      "Worked on AI and ERP modernization for a linen/export operation and taught AI fundamentals to staff.",
   },
   {
     label: "12 Pell",
     metric: "Intern · Event Management Team",
-    description: "Supported operations and event execution for a culture-forward retail and community brand.",
+    description:
+      "Supported operations and event execution for a culture-forward retail and community brand with 2M+ TikTok followers.",
   },
 ];
