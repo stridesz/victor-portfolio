@@ -11,6 +11,7 @@ export type Project = {
   status: string;
   description: string;
   tags: string[];
+  tint: string;
 };
 
 export type ProofPoint = {
@@ -36,6 +37,7 @@ export const projects: Project[] = [
     description:
       "A social dining concept for students, focused on turning meals into easier ways to meet people and build real campus connections.",
     tags: ["social dining", "student experiences", "consumer startup"],
+    tint: "rgba(15, 223, 111, 0.06)",
   },
   {
     name: "The Fractional Few",
@@ -46,6 +48,7 @@ export const projects: Project[] = [
     description:
       "A market-research community focused on reverse stock splits and the information gaps around a niche public-markets setup.",
     tags: ["markets", "research", "community"],
+    tint: "rgba(26, 92, 46, 0.06)",
   },
 ];
 

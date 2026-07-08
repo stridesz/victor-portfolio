@@ -13,8 +13,11 @@ type ProjectCardProps = {
 
 export function ProjectCard({ project, priority = false }: ProjectCardProps) {
   return (
-    <motion.article className="project-card" whileHover={{ y: -6 }}>
-
+    <motion.article
+      className="project-card"
+      style={{ "--card-tint": project.tint } as React.CSSProperties}
+      whileHover={{ y: -6 }}
+    >
       <div className="project-card__topline">
         <StatusPill>{project.status}</StatusPill>
       </div>

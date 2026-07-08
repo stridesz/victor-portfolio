@@ -737,13 +737,14 @@ a {
   gap: 1.15rem;
   min-height: 100%;
   padding: clamp(1rem, 2.5vw, 1.35rem);
+  background: var(--card-tint, rgba(255, 255, 255, 0.74));
   transition: border-color 180ms ease, background-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
 }
 
 .project-card:hover,
 .project-card:focus-within {
   border-color: var(--border-strong);
-  background: #ffffff;
+  background: color-mix(in srgb, var(--card-tint, #ffffff) 60%, #ffffff);
   box-shadow: 0 22px 60px rgba(17, 17, 17, 0.1);
 }
 
