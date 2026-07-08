@@ -3,8 +3,7 @@ import Link from "next/link";
 const navLinks = [
   { label: "Projects", href: "/projects" },
   { label: "About", href: "/about" },
-  { label: "Blog", href: "/blog" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Contact", href: "mailto:victorqi0707@gmail.com" },
 ];
 
 export function SiteNav() {

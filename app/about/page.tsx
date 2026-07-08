@@ -1,5 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
+import { Reveal } from "../components/Reveal";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteNav } from "../components/SiteNav";
 import { StatusPill } from "../components/StatusPill";
@@ -29,6 +31,16 @@ export default function AboutPage() {
               of supply chain, AI, operations, and entrepreneurship. The thread is simple: understand how things move,
               then make them move better.
             </p>
+            <div className="about-portrait">
+              <Image
+                src="/victor-headshot.jpg"
+                alt="Victor Qi"
+                width={400}
+                height={560}
+                className="about-portrait__img"
+                priority
+              />
+            </div>
           </div>
           <aside className="about-note">
             <span>operator note</span>
@@ -42,24 +54,28 @@ export default function AboutPage() {
 
       <section className="section-pad section-pad--tight">
         <div className="container about-columns">
-          <div className="timeline-card">
-            <span>Background</span>
-            {timeline.map((item, index) => (
-              <div className="timeline-item" key={item}>
-                <strong>0{index + 1}</strong>
-                <p>{item}</p>
-              </div>
-            ))}
-          </div>
-          <div className="proof-grid proof-grid--stacked">
-            {proofPoints.map((item) => (
-              <article className="proof-card" key={item.label}>
-                <p>{item.label}</p>
-                <h3>{item.metric}</h3>
-                <span>{item.description}</span>
-              </article>
-            ))}
-          </div>
+          <Reveal>
+            <div className="timeline-card">
+              <span>Background</span>
+              {timeline.map((item, index) => (
+                <div className="timeline-item" key={item}>
+                  <strong>0{index + 1}</strong>
+                  <p>{item}</p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="proof-grid proof-grid--stacked">
+              {proofPoints.map((item) => (
+                <article className="proof-card" key={item.label}>
+                  <p>{item.label}</p>
+                  <h3>{item.metric}</h3>
+                  <span>{item.description}</span>
+                </article>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </section>
 

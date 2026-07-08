@@ -284,17 +284,6 @@ a {
   text-align: left;
 }
 
-.hero__kicker {
-  margin: 0;
-  color: rgba(17, 17, 17, 0.58);
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: clamp(0.76rem, 1.1vw, 0.92rem);
-  font-weight: 720;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  animation: hero-pop-in 0.52s cubic-bezier(0.16, 1, 0.3, 1) 2.22s both;
-}
-
 .hero h1,
 .page-hero h1 {
   max-width: 12ch;
@@ -308,8 +297,8 @@ a {
 
 .hero h1 {
   max-width: 9ch;
-  font-size: clamp(4.8rem, 10.8vw, 9.6rem);
-  line-height: 0.88;
+  font-size: clamp(3.6rem, 7.5vw, 7rem);
+  line-height: 0.9;
   transform-origin: 50% 52%;
   text-shadow: none;
   animation: hero-name-slide-in var(--intro-name-duration) cubic-bezier(0.16, 1, 0.3, 1) both;
@@ -962,6 +951,19 @@ a {
   gap: clamp(1rem, 4vw, 3rem);
 }
 
+.about-portrait {
+  margin-top: 1.5rem;
+  max-width: 400px;
+}
+
+.about-portrait__img {
+  width: 100%;
+  height: auto;
+  border-radius: clamp(1rem, 1.8vw, 1.35rem);
+  border: 1px solid var(--border);
+  object-fit: cover;
+}
+
 .about-columns {
   display: grid;
   grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.05fr);
@@ -1028,6 +1030,14 @@ a {
 .site-footer__eyebrow {
   margin-bottom: 0.35rem !important;
   color: #111111;
+}
+
+.site-footer__quote {
+  max-width: 42ch;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-style: italic;
+  line-height: 1.55;
 }
 
 .site-footer__links {
@@ -1241,7 +1251,6 @@ a {
 
   .site-nav-wrap,
   .hero h1,
-  .hero__kicker,
   .hero-contact-card,
   .hero-contact-links a,
   .hero__actions,

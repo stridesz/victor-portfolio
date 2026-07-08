@@ -17,7 +17,6 @@ export function ProjectCard({ project, priority = false }: ProjectCardProps) {
 
       <div className="project-card__topline">
         <StatusPill>{project.status}</StatusPill>
-        <span className="project-card__label">project</span>
       </div>
 
       <div className="project-card__body">
