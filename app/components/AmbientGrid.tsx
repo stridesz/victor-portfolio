@@ -57,6 +57,35 @@ export function AmbientGrid() {
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     const finePointerQuery = window.matchMedia("(pointer: fine)");
 
+    const syncGridOrigin = () => {
+      const title = document.getElementById("hero-title");
+
+      if (!(title instanceof HTMLElement)) {
+        document.documentElement.style.removeProperty("--hero-grid-origin-x");
+        document.documentElement.style.removeProperty("--hero-grid-origin-y");
+        return;
+      }
+
+      let x = title.offsetWidth / 2;
+      let y = title.offsetHeight / 2;
+      let element: HTMLElement | null = title;
+
+      while (element) {
+        x += element.offsetLeft;
+        y += element.offsetTop;
+        element = element.offsetParent as HTMLElement | null;
+      }
+
+      x -= window.scrollX;
+      y -= window.scrollY;
+
+      const originX = Math.max(8, Math.min(92, (x / window.innerWidth) * 100));
+      const originY = Math.max(12, Math.min(88, (y / window.innerHeight) * 100));
+
+      document.documentElement.style.setProperty("--hero-grid-origin-x", `${originX.toFixed(2)}%`);
+      document.documentElement.style.setProperty("--hero-grid-origin-y", `${originY.toFixed(2)}%`);
+    };
+
     const traceGrid = (activePointer: Point | null, strength: number) => {
       for (let x = -GRID_SIZE; x <= width + GRID_SIZE; x += GRID_SIZE) {
         context.beginPath();
@@ -149,6 +178,7 @@ export function AmbientGrid() {
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
       context.setTransform(ratio, 0, 0, ratio, 0, 0);
+      syncGridOrigin();
       draw();
     };
 
@@ -175,6 +205,10 @@ export function AmbientGrid() {
     };
 
     resize();
+    document.fonts?.ready.then(() => {
+      syncGridOrigin();
+      scheduleDraw();
+    });
     window.addEventListener("resize", resize);
     window.addEventListener("pointermove", handlePointerMove, { passive: true });
     window.addEventListener("blur", clearPointer);

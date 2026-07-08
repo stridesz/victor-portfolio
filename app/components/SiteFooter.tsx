@@ -6,7 +6,7 @@ export function SiteFooter() {
     <footer className="site-footer">
       <div>
         <p className="site-footer__eyebrow">Victor Qi</p>
-        <p>Business student, builder, and systems operator.</p>
+        <p>Northeastern University · Class of 2029 · Business Administration</p>
       </div>
       <div className="site-footer__links" aria-label="Social links">
         {socials.map((social) => (

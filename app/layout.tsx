@@ -18,16 +18,18 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://victor-portfolio-chi.vercel.app"),
   title: "Victor Qi",
-  description: "Victor Qi — business student, builder, and systems operator working across startups, AI, operations, and supply chain.",
+  description:
+    "Victor Qi — Northeastern University Class of 2029, Business Administration with Supply Chain Management and Management concentrations.",
   openGraph: {
     title: "Victor Qi",
-    description: "Business student, builder, and systems operator working across startups, AI, operations, and supply chain.",
+    description:
+      "Northeastern University Class of 2029. Business Administration with Supply Chain Management and Management concentrations.",
     images: ["/og-image.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Victor Qi",
-    description: "Business student, builder, and systems operator.",
+    description: "Northeastern University Class of 2029 · Business Administration.",
     images: ["/og-image.png"],
   },
   icons: {

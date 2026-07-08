@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Mail } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { ProjectCard } from "./components/ProjectCard";
 import { SectionHeader } from "./components/SectionHeader";
 import { SiteFooter } from "./components/SiteFooter";
@@ -15,36 +15,53 @@ export default function Home() {
       <section className="hero section-pad" aria-labelledby="hero-title">
         <div className="container hero__grid">
           <div className="hero__copy">
-            <StatusPill tone="muted">Business · AI · Operations</StatusPill>
+            <p className="hero__kicker">Northeastern University · Class of 2029</p>
             <h1 id="hero-title">Victor Qi</h1>
-            <p>
-              Business student, builder, and systems operator working across startups, AI, operations, and supply
-              chain.
-            </p>
             <div className="hero__actions">
               <Link className="button button--primary" href="/projects">
                 View Projects <ArrowRight aria-hidden="true" size={18} />
               </Link>
-              <a className="button button--secondary" href="#contact">
-                Contact Me <Mail aria-hidden="true" size={18} />
-              </a>
             </div>
           </div>
 
-          <aside className="intro-card" aria-label="Victor Qi profile snapshot">
+          <aside className="hero-contact-card" aria-label="Contact methods">
+            <StatusPill tone="muted">Contact</StatusPill>
+            <div className="hero-contact-links" aria-label="Contact links">
+              {socials.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target={social.href.startsWith("http") ? "_blank" : undefined}
+                  rel={social.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                >
+                  {social.label} <ArrowRight aria-hidden="true" size={16} />
+                </a>
+              ))}
+            </div>
+          </aside>
+
+          <aside className="intro-card intro-card--facts" id="profile" aria-label="Victor Qi profile snapshot">
             <span>Profile</span>
-            <p>
-              Northeastern business student with operating reps across resale, subscription products, events,
-              campus-facing startups, and AI/ERP work inside a linen export business.
-            </p>
             <dl>
               <div>
-                <dt>Focus</dt>
-                <dd>Supply chain, AI systems, operations</dd>
+                <dt>Education</dt>
+                <dd>Northeastern University</dd>
               </div>
               <div>
-                <dt>Builder mode</dt>
-                <dd>Useful products, cleaner handoffs, real execution</dd>
+                <dt>Class</dt>
+                <dd>2029</dd>
+              </div>
+              <div>
+                <dt>Year</dt>
+                <dd>Sophomore</dd>
+              </div>
+              <div>
+                <dt>Major</dt>
+                <dd>Business Administration</dd>
+              </div>
+              <div>
+                <dt>Concentrations</dt>
+                <dd>Supply Chain Management &amp; Management</dd>
               </div>
             </dl>
           </aside>
