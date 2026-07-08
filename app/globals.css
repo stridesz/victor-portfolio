@@ -288,6 +288,10 @@ a {
   --detail-delay: 2.36s;
 }
 
+.hero__actions .button:nth-child(2) {
+  --detail-delay: 2.44s;
+}
+
 .hero-contact-card {
   align-self: end;
   display: grid;
@@ -940,6 +944,24 @@ a {
   gap: clamp(1rem, 4vw, 3rem);
 }
 
+.about-layout--personal {
+  grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.62fr);
+  align-items: center;
+}
+
+.about-prose {
+  display: grid;
+  gap: 1rem;
+  max-width: 68ch;
+}
+
+.about-prose p {
+  margin: 0;
+  color: var(--muted-strong);
+  font-size: clamp(1.06rem, 1.55vw, 1.28rem);
+  line-height: 1.72;
+}
+
 .about-portrait {
   margin-top: 1.5rem;
   max-width: 400px;
@@ -951,6 +973,96 @@ a {
   border-radius: clamp(1rem, 1.8vw, 1.35rem);
   border: 1px solid var(--border);
   object-fit: cover;
+}
+
+.about-photo-card {
+  position: relative;
+  min-height: clamp(24rem, 44vw, 34rem);
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  padding: clamp(1.1rem, 2.6vw, 1.75rem);
+  border: 1px solid rgba(17, 17, 17, 0.1);
+  border-radius: clamp(1.25rem, 2.2vw, 1.8rem);
+  background: rgba(255, 255, 255, 0.58);
+  box-shadow: 0 24px 70px rgba(17, 17, 17, 0.09);
+  isolation: isolate;
+}
+
+.about-photo-card__image {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.01);
+}
+
+.about-photo-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 48%, rgba(16, 14, 11, 0.34) 100%);
+}
+
+.about-photo-card__caption {
+  width: min(100%, 22rem);
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 1.1rem;
+  background: rgba(247, 246, 242, 0.72);
+  backdrop-filter: blur(14px);
+}
+
+.about-photo-card__caption span,
+.personal-card span {
+  color: rgba(17, 17, 17, 0.58);
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.72rem;
+  font-weight: 760;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.about-photo-card__caption p {
+  margin: 0.65rem 0 0;
+  color: #111111;
+  font-size: clamp(1.15rem, 2vw, 1.42rem);
+  font-weight: 690;
+  line-height: 1.35;
+  letter-spacing: -0.035em;
+}
+
+.personal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.personal-card {
+  min-height: 100%;
+  padding: clamp(1.2rem, 2.5vw, 1.75rem);
+  border: 1px solid rgba(17, 17, 17, 0.1);
+  border-radius: clamp(1rem, 1.8vw, 1.35rem);
+  background: rgba(255, 255, 255, 0.64);
+  box-shadow: 0 18px 50px rgba(17, 17, 17, 0.045);
+}
+
+.personal-card h2 {
+  margin: 0.85rem 0 0;
+  color: #111111;
+  font-size: clamp(1.45rem, 2.6vw, 2.35rem);
+  line-height: 0.98;
+  letter-spacing: -0.06em;
+}
+
+.personal-card p {
+  margin: 0.9rem 0 0;
+  color: var(--muted);
+  line-height: 1.72;
 }
 
 .about-columns {
@@ -1091,7 +1203,8 @@ body {
   }
 
   .card-grid--two,
-  .proof-grid {
+  .proof-grid,
+  .personal-grid {
     grid-template-columns: 1fr 1fr;
   }
 
@@ -1190,6 +1303,14 @@ body {
 
   .site-footer__links {
     justify-content: flex-start;
+  }
+
+  .personal-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-photo-card {
+    min-height: 22rem;
   }
 }
 

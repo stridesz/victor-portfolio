@@ -22,6 +22,9 @@ export default function Home() {
               <Link className="button button--primary" href="/projects">
                 View Projects <ArrowRight aria-hidden="true" size={18} />
               </Link>
+              <Link className="button button--secondary" href="/about">
+                About me <ArrowRight aria-hidden="true" size={18} />
+              </Link>
             </div>
           </div>
 
