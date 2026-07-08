@@ -659,6 +659,40 @@ a {
   line-height: 1.45;
 }
 
+/* Husky link — Northeastern University hover easter egg */
+.husky-link-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.husky-link {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+  font-weight: 600;
+  transition: color 200ms ease, text-decoration-thickness 200ms ease;
+}
+
+.husky-link:hover,
+.husky-link:focus-visible {
+  color: #1a3050;
+  text-decoration-thickness: 2.5px;
+  outline: none;
+}
+
+.husky-link__emoji {
+  position: absolute;
+  top: -1.6rem;
+  left: 50%;
+  transform-origin: center bottom;
+  font-size: 1.25rem;
+  pointer-events: none;
+  z-index: 10;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.12));
+}
+
+
 .section-header {
   display: grid;
   justify-items: start;
@@ -908,9 +942,9 @@ a {
 
 .site-footer__links a:hover,
 .site-footer__links a:focus-visible {
-  border-color: #111111;
-  background: #111111;
-  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.55);
+  background: #ffffff;
+  color: #111111;
 }
 
 .page-hero {
@@ -1011,15 +1045,25 @@ a {
 }
 
 .site-footer {
+  width: 100%;
+  margin-inline: 0;
+  display: block;
+  padding: 0;
+  margin-bottom: 0;
+  border-radius: 0;
+  border: 0;
+  background: #111111;
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.site-footer__inner {
   width: min(100% - 2rem, 1120px);
   margin-inline: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  padding: 2rem 0 2.5rem;
-  border-top: 1px solid rgba(17, 17, 17, 0.1);
-  color: var(--muted);
+  padding: 2.5rem 0;
 }
 
 .site-footer p {
@@ -1029,12 +1073,12 @@ a {
 
 .site-footer__eyebrow {
   margin-bottom: 0.35rem !important;
-  color: #111111;
+  color: #ffffff;
 }
 
 .site-footer__quote {
   max-width: 42ch;
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.55);
   font-size: 0.82rem;
   font-style: italic;
   line-height: 1.55;
@@ -1050,6 +1094,9 @@ a {
 .site-footer__links a {
   padding-block: 0.62rem;
   font-size: 0.82rem;
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.82);
 }
 
 @media (max-width: 980px) {
@@ -1166,7 +1213,7 @@ a {
     height: 5.25rem;
   }
 
-  .site-footer {
+  .site-footer__inner {
     display: grid;
   }
 

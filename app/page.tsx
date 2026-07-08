@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { HuskyLink } from "./components/HuskyLink";
 import { ProjectCard } from "./components/ProjectCard";
 import { Reveal } from "./components/Reveal";
 import { SectionHeader } from "./components/SectionHeader";
@@ -45,7 +46,9 @@ export default function Home() {
             <dl>
               <div>
                 <dt>Education</dt>
-                <dd>Northeastern University</dd>
+                <dd>
+                  <HuskyLink href="https://www.northeastern.edu">Northeastern University</HuskyLink>
+                </dd>
               </div>
               <div>
                 <dt>Class</dt>
