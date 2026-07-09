@@ -2,11 +2,11 @@
 
 import { useEffect, useRef } from "react";
 
-// Timing is clustered around ~1s so the name landing, the grid reveal, and this
-// burst all read as a single coordinated moment.
-const BURST_DELAY_MS = 980; // fire just as the hero name settles
-const BURST_DURATION_MS = 1500; // total lifetime of the burst
-const RAY_COUNT = 22;
+// Timing is clustered inside the first second so the burst supports the hero
+// landing without delaying any of the useful content.
+const BURST_DELAY_MS = 500;
+const BURST_DURATION_MS = 900;
+const RAY_COUNT = 14;
 
 type RGB = [number, number, number];
 type Ray = {
@@ -105,7 +105,7 @@ export function HeroIntroBurst() {
     };
 
     const drawRings = (p: number) => {
-      const ringDelays = [0, 0.13, 0.28];
+      const ringDelays = [0, 0.2];
 
       for (const delay of ringDelays) {
         const t = Math.min(1, Math.max(0, (p - delay) / (1 - delay)));

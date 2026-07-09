@@ -83,16 +83,18 @@ export default function Home() {
               description="A short list of projects and communities I am building around student experiences, markets, and useful systems."
             />
           </Reveal>
-          <Reveal delay={0.1}>
-            <div className="card-grid card-grid--two">
-              {projects.map((project, index) => (
-                <ProjectCard key={project.name} project={project} priority={index === 0} />
-              ))}
-            </div>
+          <div className="card-grid card-grid--two">
+            {projects.map((project, index) => (
+              <Reveal className="reveal-card" delay={0.06 + index * 0.08} key={project.name} variant="card">
+                <ProjectCard project={project} priority={index === 0} />
+              </Reveal>
+            ))}
+          </div>
+          <Reveal className="reveal-link" delay={0.16} variant="fade">
+            <Link className="inline-link" href="/projects">
+              View full project list <ArrowRight aria-hidden="true" size={17} />
+            </Link>
           </Reveal>
-          <Link className="inline-link" href="/projects">
-            View full project list <ArrowRight aria-hidden="true" size={17} />
-          </Link>
         </div>
       </section>
 
@@ -105,17 +107,17 @@ export default function Home() {
               description="Ventures, internships, and execution-heavy work that shaped how I think about business systems."
             />
           </Reveal>
-          <Reveal delay={0.1}>
-            <div className="proof-grid">
-              {proofPoints.map((item) => (
-                <article className="proof-card" key={item.label}>
+          <div className="proof-grid">
+            {proofPoints.map((item, index) => (
+              <Reveal className="reveal-card" delay={0.05 + index * 0.06} key={item.label} variant="card">
+                <article className="proof-card">
                   <p>{item.label}</p>
                   <h3>{item.metric}</h3>
                   <span>{item.description}</span>
                 </article>
-              ))}
-            </div>
-          </Reveal>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
