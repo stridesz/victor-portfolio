@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import type { IconType } from "react-icons";
+import { FaEnvelope, FaInstagram, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
 import { HuskyLink } from "./components/HuskyLink";
 import { ProjectCard } from "./components/ProjectCard";
 import { Reveal } from "./components/Reveal";
@@ -8,6 +8,13 @@ import { SiteFooter } from "./components/SiteFooter";
 import { SiteNav } from "./components/SiteNav";
 import { StatusPill } from "./components/StatusPill";
 import { projects, proofPoints, socials } from "./data/site";
+
+const socialIcons: Record<string, IconType> = {
+  LinkedIn: FaLinkedinIn,
+  Instagram: FaInstagram,
+  X: FaXTwitter,
+  Email: FaEnvelope,
+};
 
 export default function Home() {
   return (
@@ -18,31 +25,27 @@ export default function Home() {
         <div className="container hero__grid">
           <div className="hero__copy">
             <h1 id="hero-title">Victor Qi</h1>
-            <div className="hero__actions">
-              <Link className="button button--primary" href="/projects">
-                View Projects <ArrowRight aria-hidden="true" size={18} />
-              </Link>
-              <Link className="button button--secondary" href="/about">
-                About me <ArrowRight aria-hidden="true" size={18} />
-              </Link>
+            <div className="hero__contact" aria-label="Contact methods">
+              <StatusPill tone="muted">Contact</StatusPill>
+              <div className="hero-contact-links" aria-label="Contact links">
+                {socials.map((social) => {
+                  const SocialIcon = socialIcons[social.label];
+
+                  return (
+                    <a
+                      key={social.label}
+                      href={social.href}
+                      target={social.href.startsWith("http") ? "_blank" : undefined}
+                      rel={social.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    >
+                      <SocialIcon aria-hidden="true" size={14} />
+                      {social.label}
+                    </a>
+                  );
+                })}
+              </div>
             </div>
           </div>
-
-          <aside className="hero-contact-card" aria-label="Contact methods">
-            <StatusPill tone="muted">Contact</StatusPill>
-            <div className="hero-contact-links" aria-label="Contact links">
-              {socials.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target={social.href.startsWith("http") ? "_blank" : undefined}
-                  rel={social.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                >
-                  {social.label} <ArrowRight aria-hidden="true" size={16} />
-                </a>
-              ))}
-            </div>
-          </aside>
 
           <aside className="intro-card intro-card--facts" id="profile" aria-label="Victor Qi profile snapshot">
             <span>Profile</span>
@@ -69,6 +72,10 @@ export default function Home() {
                 <dt>Concentrations</dt>
                 <dd>Supply Chain Management &amp; Management</dd>
               </div>
+              <div>
+                <dt>GPA</dt>
+                <dd>3.97</dd>
+              </div>
             </dl>
           </aside>
         </div>
@@ -90,11 +97,7 @@ export default function Home() {
               </Reveal>
             ))}
           </div>
-          <Reveal className="reveal-link" delay={0.16} variant="fade">
-            <Link className="inline-link" href="/projects">
-              View full project list <ArrowRight aria-hidden="true" size={17} />
-            </Link>
-          </Reveal>
+
         </div>
       </section>
 
