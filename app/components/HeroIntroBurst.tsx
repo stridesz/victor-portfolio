@@ -6,7 +6,7 @@ import { useEffect, useRef } from "react";
 // landing without delaying any of the useful content.
 const BURST_DELAY_MS = 500;
 const BURST_DURATION_MS = 900;
-const RAY_COUNT = 14;
+const RAY_COUNT = 10;
 
 type RGB = [number, number, number];
 type Ray = {
@@ -19,7 +19,7 @@ type Ray = {
 
 const PALETTE: RGB[] = [
   [35, 65, 95], // accent blue
-  [126, 107, 76], // warm bronze
+  [247, 246, 242], // paper
   [17, 17, 17], // ink
 ];
 
@@ -78,10 +78,10 @@ export function HeroIntroBurst() {
     const rays: Ray[] = Array.from({ length: RAY_COUNT }, (_, i) => {
       const base = (i / RAY_COUNT) * Math.PI * 2;
       return {
-        angle: base + (Math.random() - 0.5) * 0.28,
-        reach: 0.55 + Math.random() * 0.5,
-        width: (i % 4 === 0 ? 2.1 : 1) + Math.random() * 0.6,
-        delay: Math.random() * 0.16,
+        angle: base + ((i % 3) - 1) * 0.07,
+        reach: 0.62 + (i % 4) * 0.1,
+        width: i % 4 === 0 ? 1.8 : 0.9,
+        delay: (i % 5) * 0.025,
         color: PALETTE[i % PALETTE.length],
       };
     });
@@ -196,13 +196,24 @@ export function HeroIntroBurst() {
       animationFrame = window.requestAnimationFrame(frame);
     };
 
+    const visibility = () => {
+      if (document.hidden && animationFrame) {
+        window.cancelAnimationFrame(animationFrame);
+        animationFrame = 0;
+      } else if (!document.hidden && startTime && performance.now() - startTime < BURST_DURATION_MS) {
+        animationFrame = window.requestAnimationFrame(frame);
+      }
+    };
+
     resize();
     window.addEventListener("resize", resize);
+    document.addEventListener("visibilitychange", visibility);
     const startTimer = window.setTimeout(begin, BURST_DELAY_MS);
 
     return () => {
       window.clearTimeout(startTimer);
       window.removeEventListener("resize", resize);
+      document.removeEventListener("visibilitychange", visibility);
 
       if (animationFrame) {
         window.cancelAnimationFrame(animationFrame);

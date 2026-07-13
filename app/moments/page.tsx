@@ -3,10 +3,12 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteNav } from "../components/SiteNav";
-import { StatusPill } from "../components/StatusPill";
+
 import { moments } from "../data/moments";
 
 export default function MomentsPage() {
+  const photographCount = `${moments.length} ${moments.length === 1 ? "photograph" : "photographs"}`;
+
   return (
     <main className="site-shell page-shell">
       <SiteNav />
@@ -15,7 +17,7 @@ export default function MomentsPage() {
           <Link className="back-link" href="/">
             <ArrowLeft aria-hidden="true" size={16} /> Home
           </Link>
-          <StatusPill tone="muted">Photo journal</StatusPill>
+          <span className="editorial-label">Photo journal / {photographCount}</span>
           <h1 id="moments-title">Moments</h1>
           <p>A place for photographs and brief notes from places I have been.</p>
         </div>
@@ -23,8 +25,8 @@ export default function MomentsPage() {
       <section className="section-pad section-pad--tight">
         <div className="container">
           {moments.length === 0 ? (
-            <div className="moments-empty">
-              <span>Nothing here yet</span>
+            <div className="moments-empty" aria-label="Empty photo journal">
+              <span>Frame 00 / Nothing here yet</span>
               <p>Photographs will appear here when I have some I want to share.</p>
             </div>
           ) : (

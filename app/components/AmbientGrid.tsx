@@ -4,11 +4,9 @@ import { useEffect, useRef } from "react";
 
 type Point = { x: number; y: number };
 type Ripple = Point & { startedAt: number };
-type Streak = Point & { length: number; speed: number; alpha: number };
 
-const GRID = 96;
-const STEP = 16;
-const RADIUS = 190;
+
+const RADIUS = 168;
 
 function warp(x: number, y: number, pointer: Point | null, velocity: Point, strength: number): Point {
   if (!pointer || strength < 0.001) return { x, y };
@@ -44,7 +42,8 @@ export function AmbientGrid() {
     let ripple: Ripple | null = null;
     let mood = document.documentElement.dataset.mood === "projects" ? 1 : 0;
     let moodTarget = mood;
-    let streaks: Streak[] = [];
+    let hidden = document.hidden;
+    let disposed = false;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const finePointer = window.matchMedia("(pointer: fine)");
 
@@ -56,20 +55,21 @@ export function AmbientGrid() {
       document.documentElement.style.setProperty("--hero-grid-origin-y", `${((rect.top + rect.height / 2) / height * 100).toFixed(2)}%`);
     };
 
-    const traceGrid = (stroke: string, lineWidth = 1) => {
+    const traceGrid = (stroke: string, spacing: number, lineWidth = 1) => {
+      const step = Math.max(8, spacing / 5);
       context.strokeStyle = stroke;
       context.lineWidth = lineWidth;
-      for (let x = -GRID; x <= width + GRID; x += GRID) {
+      for (let x = -spacing; x <= width + spacing; x += spacing) {
         context.beginPath();
-        for (let y = -GRID, first = true; y <= height + GRID; y += STEP, first = false) {
+        for (let y = -spacing, first = true; y <= height + spacing; y += step, first = false) {
           const point = warp(x, y, pointer, velocity, field);
           if (first) context.moveTo(point.x, point.y); else context.lineTo(point.x, point.y);
         }
         context.stroke();
       }
-      for (let y = -GRID; y <= height + GRID; y += GRID) {
+      for (let y = -spacing; y <= height + spacing; y += spacing) {
         context.beginPath();
-        for (let x = -GRID, first = true; x <= width + GRID; x += STEP, first = false) {
+        for (let x = -spacing, first = true; x <= width + spacing; x += step, first = false) {
           const point = warp(x, y, pointer, velocity, field);
           if (first) context.moveTo(point.x, point.y); else context.lineTo(point.x, point.y);
         }
@@ -77,32 +77,15 @@ export function AmbientGrid() {
       }
     };
 
-    const drawStreaks = () => {
-      context.save();
-      context.lineCap = "round";
-      for (const streak of streaks) {
-        const cycle = height + streak.length + 80;
-        const head = (streak.y + streak.speed * time * 0.001) % cycle;
-        const alpha = mood * streak.alpha;
-        const gradient = context.createLinearGradient(streak.x, head - streak.length, streak.x, head);
-        gradient.addColorStop(0, "rgba(30,150,85,0)");
-        gradient.addColorStop(1, `rgba(80,205,125,${alpha})`);
-        context.strokeStyle = gradient;
-        context.lineWidth = 1.2;
-        context.beginPath();
-        context.moveTo(streak.x, head - streak.length);
-        context.lineTo(streak.x, head);
-        context.stroke();
-      }
-      context.restore();
-    };
 
     const draw = () => {
+      const baseSpacing = width <= 760 ? 56 : 64;
+      const projectSpacing = width <= 760 ? 44 : 48;
+      const spacing = baseSpacing + (projectSpacing - baseSpacing) * mood;
       context.clearRect(0, 0, width, height);
       context.lineCap = "round";
       context.lineJoin = "round";
-      traceGrid(`rgba(17,17,17,${0.035 - mood * 0.021})`);
-      if (mood > 0.001) drawStreaks();
+      traceGrid(`rgba(${17 + mood * 12},${17 + mood * 90},${17 + mood * 57},${0.035 + mood * 0.025})`, spacing);
 
       const pointerFx = 1 - mood;
       if (pointer && field > 0.01 && pointerFx > 0.02) {
@@ -110,12 +93,12 @@ export function AmbientGrid() {
         context.beginPath();
         context.arc(pointer.x, pointer.y, RADIUS, 0, Math.PI * 2);
         context.clip();
-        traceGrid(`rgba(35,65,95,${0.12 * field * pointerFx})`, 1.1);
+        traceGrid(`rgba(35,65,95,${0.12 * field * pointerFx})`, spacing, 1.1);
         context.restore();
 
         context.fillStyle = `rgba(35,65,95,${0.16 * field * pointerFx})`;
-        for (let x = Math.floor((pointer.x - RADIUS) / GRID) * GRID; x <= pointer.x + RADIUS; x += GRID) {
-          for (let y = Math.floor((pointer.y - RADIUS) / GRID) * GRID; y <= pointer.y + RADIUS; y += GRID) {
+        for (let x = Math.floor((pointer.x - RADIUS) / spacing) * spacing; x <= pointer.x + RADIUS; x += spacing) {
+          for (let y = Math.floor((pointer.y - RADIUS) / spacing) * spacing; y <= pointer.y + RADIUS; y += spacing) {
             const distance = Math.hypot(x - pointer.x, y - pointer.y);
             if (distance < RADIUS) {
               const point = warp(x, y, pointer, velocity, field);
@@ -158,13 +141,12 @@ export function AmbientGrid() {
       }
       mood += (moodTarget - mood) * (reducedMotion.matches ? 1 : 0.12);
       draw();
-      const streaksActive = mood > 0.01 && !reducedMotion.matches;
-      const active = Math.abs(moodTarget - mood) > 0.003 || streaksActive || desiredField > 0 || field > 0.004 || ripple;
-      frame = active ? window.requestAnimationFrame(tick) : 0;
+      const active = Math.abs(moodTarget - mood) > 0.003 || desiredField > 0 || field > 0.004 || ripple;
+      frame = active && !hidden ? window.requestAnimationFrame(tick) : 0;
     };
 
     const start = () => {
-      if (!frame) frame = window.requestAnimationFrame(tick);
+      if (!frame && !hidden) frame = window.requestAnimationFrame(tick);
     };
 
     const resize = () => {
@@ -176,10 +158,7 @@ export function AmbientGrid() {
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
       context.setTransform(ratio, 0, 0, ratio, 0, 0);
-      streaks = Array.from({ length: Math.max(14, Math.min(46, Math.round(width / 38))) }, () => ({
-        x: Math.random() * width, y: Math.random() * (height + 400), length: 80 + Math.random() * 190,
-        speed: 90 + Math.random() * 230, alpha: 0.35 + Math.random() * 0.35,
-      }));
+
       syncGridOrigin();
       draw();
     };
@@ -209,9 +188,21 @@ export function AmbientGrid() {
       moodTarget = document.documentElement.dataset.mood === "projects" ? 1 : 0;
       start();
     });
+    const visibility = () => {
+      hidden = document.hidden;
+      if (hidden && frame) {
+        window.cancelAnimationFrame(frame);
+        frame = 0;
+      } else if (!hidden) {
+        draw();
+        start();
+      }
+    };
 
     resize();
-    document.fonts?.ready.then(() => { syncGridOrigin(); draw(); });
+    document.fonts?.ready.then(() => {
+      if (!disposed) { syncGridOrigin(); draw(); }
+    });
     window.addEventListener("resize", resize);
     window.addEventListener("pointermove", move, { passive: true });
     window.addEventListener("pointerdown", click, { passive: true });
@@ -219,9 +210,11 @@ export function AmbientGrid() {
     document.documentElement.addEventListener("mouseleave", leave);
     reducedMotion.addEventListener("change", preferences);
     finePointer.addEventListener("change", preferences);
+    document.addEventListener("visibilitychange", visibility);
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-mood"] });
 
     return () => {
+      disposed = true;
       window.removeEventListener("resize", resize);
       window.removeEventListener("pointermove", move);
       window.removeEventListener("pointerdown", click);
@@ -229,6 +222,7 @@ export function AmbientGrid() {
       document.documentElement.removeEventListener("mouseleave", leave);
       reducedMotion.removeEventListener("change", preferences);
       finePointer.removeEventListener("change", preferences);
+      document.removeEventListener("visibilitychange", visibility);
       observer.disconnect();
       if (frame) window.cancelAnimationFrame(frame);
     };

@@ -5,13 +5,14 @@ type SectionHeaderProps = {
   title: string;
   description?: string;
   align?: "left" | "center";
+  headingId?: string;
 };
 
-export function SectionHeader({ eyebrow, title, description, align = "left" }: SectionHeaderProps) {
+export function SectionHeader({ eyebrow, title, description, align = "left", headingId }: SectionHeaderProps) {
   return (
     <div className={`section-header section-header--${align}`}>
       <StatusPill tone="muted">{eyebrow}</StatusPill>
-      <h2>{title}</h2>
+      <h2 id={headingId}>{title}</h2>
       {description ? <p>{description}</p> : null}
     </div>
   );

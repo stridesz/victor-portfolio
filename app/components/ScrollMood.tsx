@@ -2,11 +2,8 @@
 
 import { useEffect } from "react";
 
-// While the Featured Projects section owns the middle of the viewport, the page
-// shifts into "projects" mood: the background warms to a light green suede and
-// the ambient grid becomes falling green rain streaks (see globals.css + AmbientGrid,
-// which both react to the data-mood attribute on <html>). It reverts as soon as
-// the hero above or the Proof section below takes over.
+// Mark the projects register while it owns the center of the viewport. The
+// attribute only adjusts the ambient grid; the section supplies its own paper.
 export function ScrollMood() {
   useEffect(() => {
     const section = document.getElementById("projects");

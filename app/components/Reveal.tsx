@@ -1,46 +1,35 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import type { ReactNode } from "react";
-
-type RevealVariant = "rise" | "card" | "fade";
+import { useEffect, useRef } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 type RevealProps = {
   children: ReactNode;
   delay?: number;
   className?: string;
-  variant?: RevealVariant;
+  variant?: "rise" | "card" | "fade";
 };
 
-const hiddenByVariant = {
-  rise: { opacity: 0, y: 20, scale: 0.995, filter: "blur(7px)" },
-  card: { opacity: 0, y: 14, scale: 0.985, filter: "blur(5px)" },
-  fade: { opacity: 0, y: 6, scale: 1, filter: "blur(3px)" },
-} satisfies Record<RevealVariant, { opacity: number; y: number; scale: number; filter: string }>;
-
-const visible = { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" };
-
 export function Reveal({ children, delay = 0, className, variant = "rise" }: RevealProps) {
-  const shouldReduceMotion = useReducedMotion();
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    node.dataset.revealState = "pending";
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        node.dataset.revealState = "visible";
+        observer.disconnect();
+      }
+    }, { threshold: 0.08 });
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <motion.div
-      className={className}
-      initial={shouldReduceMotion ? false : hiddenByVariant[variant]}
-      whileInView={visible}
-      viewport={{ once: true, amount: 0.08 }}
-      transition={
-        shouldReduceMotion
-          ? { duration: 0 }
-          : {
-              opacity: { duration: 0.34, delay, ease: "easeOut" },
-              filter: { duration: 0.42, delay, ease: "easeOut" },
-              y: { type: "spring", stiffness: 190, damping: 24, mass: 0.75, delay },
-              scale: { type: "spring", stiffness: 190, damping: 24, mass: 0.75, delay },
-            }
-      }
-    >
+    <div ref={ref} data-reveal="true" data-reveal-variant={variant} className={className} style={{ "--reveal-delay": `${delay}s` } as CSSProperties}>
       {children}
-    </motion.div>
+    </div>
   );
 }

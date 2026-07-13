@@ -7,18 +7,6 @@ export function HuskyLink({ children, href }: { children: React.ReactNode; href:
   const shouldReduceMotion = useReducedMotion();
   const [hovered, setHovered] = useState(false);
 
-  if (shouldReduceMotion) {
-    return (
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="husky-link"
-      >
-        {children}
-      </a>
-    );
-  }
 
   return (
     <span
@@ -33,7 +21,7 @@ export function HuskyLink({ children, href }: { children: React.ReactNode; href:
         className="husky-link__emoji"
         initial={{ opacity: 0, scale: 0, y: 8, rotate: 0 }}
         animate={
-          hovered
+          hovered && !shouldReduceMotion
             ? {
                 opacity: [0, 1, 1, 1, 1, 0],
                 scale: [0, 1.35, 1, 1.1, 1.1, 0.4],
