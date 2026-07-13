@@ -1,6 +1,7 @@
 import type { IconType } from "react-icons";
 import { FaEnvelope, FaInstagram, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
 import { HuskyLink } from "./components/HuskyLink";
+import { HeroShadowField } from "./components/HeroShadowField";
 import { ProjectCard } from "./components/ProjectCard";
 import { Reveal } from "./components/Reveal";
 import { SectionHeader } from "./components/SectionHeader";
@@ -22,6 +23,7 @@ export default function Home() {
       <SiteNav />
 
       <section className="hero section-pad" aria-labelledby="hero-title">
+        <HeroShadowField />
         <div className="container hero__grid">
           <div className="hero__copy">
             <h1 id="hero-title">Victor Qi</h1>
