@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 
 // Timing is clustered inside the first second so the burst supports the hero
 // landing without delaying any of the useful content.
@@ -28,14 +29,20 @@ const rgba = ([r, g, b]: RGB, a: number) => `rgba(${r}, ${g}, ${b}, ${a})`;
 
 export function HeroIntroBurst() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     const canvas = canvasRef.current;
+    const title = document.getElementById("hero-title");
+    if (!canvas || !(title instanceof HTMLElement)) return;
+
     const context = canvas?.getContext("2d", { alpha: true });
 
-    if (!canvas || !context) {
+    if (!context) {
       return;
     }
+    const surface = canvas;
+    const drawingContext = context;
 
     // Respect reduced-motion: no burst at all, the static grid still reveals.
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -48,6 +55,8 @@ export function HeroIntroBurst() {
     let animationFrame = 0;
     let startTime = 0;
     let origin = { x: 0, y: 0 };
+    let finalized = false;
+    let finalize = () => {};
 
     const resize = () => {
       const ratio = Math.min(window.devicePixelRatio || 1, 2);
@@ -175,6 +184,7 @@ export function HeroIntroBurst() {
       context.clearRect(0, 0, width, height);
 
       if (p >= 1) {
+        finalize();
         return; // burst is over; leave the canvas clear
       }
 
@@ -186,11 +196,6 @@ export function HeroIntroBurst() {
     };
 
     const begin = () => {
-      // Only play where the hero name exists (home page).
-      if (!document.getElementById("hero-title")) {
-        return;
-      }
-
       computeOrigin();
       startTime = performance.now();
       animationFrame = window.requestAnimationFrame(frame);
@@ -201,8 +206,22 @@ export function HeroIntroBurst() {
         window.cancelAnimationFrame(animationFrame);
         animationFrame = 0;
       } else if (!document.hidden && startTime && performance.now() - startTime < BURST_DURATION_MS) {
-        animationFrame = window.requestAnimationFrame(frame);
+        if (!animationFrame) animationFrame = window.requestAnimationFrame(frame);
+      } else if (!document.hidden && startTime) {
+        finalize();
       }
+    };
+
+    finalize = () => {
+      if (finalized) return;
+      finalized = true;
+      if (animationFrame) window.cancelAnimationFrame(animationFrame);
+      animationFrame = 0;
+      window.removeEventListener("resize", resize);
+      document.removeEventListener("visibilitychange", visibility);
+      drawingContext.clearRect(0, 0, width, height);
+      surface.width = 1;
+      surface.height = 1;
     };
 
     resize();
@@ -212,14 +231,9 @@ export function HeroIntroBurst() {
 
     return () => {
       window.clearTimeout(startTimer);
-      window.removeEventListener("resize", resize);
-      document.removeEventListener("visibilitychange", visibility);
-
-      if (animationFrame) {
-        window.cancelAnimationFrame(animationFrame);
-      }
+      finalize();
     };
-  }, []);
+  }, [pathname]);
 
   return <canvas ref={canvasRef} className="hero-intro-burst" aria-hidden="true" />;
 }

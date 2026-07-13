@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { AmbientGrid } from "./components/AmbientGrid";
+import { HeroIntroBurst } from "./components/HeroIntroBurst";
+import { ScrollMood } from "./components/ScrollMood";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -55,6 +58,9 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" />
       </head>
       <body>
+        <AmbientGrid />
+        <HeroIntroBurst />
+        <ScrollMood />
         {children}
       </body>
     </html>

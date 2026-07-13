@@ -1,36 +1,132 @@
-import { ArrowDown, ArrowUpRight } from "lucide-react";
-import { ContactForm } from "./components/ContactForm";
-import { MotionReveal } from "./components/MotionReveal";
-import { experience, projects } from "./data/site";
+import type { IconType } from "react-icons";
+import { FaEnvelope, FaInstagram, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
+import { HuskyLink } from "./components/HuskyLink";
+import { ProjectCard } from "./components/ProjectCard";
+import { Reveal } from "./components/Reveal";
+import { SectionHeader } from "./components/SectionHeader";
+import { SiteFooter } from "./components/SiteFooter";
+import { SiteNav } from "./components/SiteNav";
 
-const socials = [["LinkedIn", "https://www.linkedin.com/in/victor-qi/"], ["Email", "mailto:victorqi0707@gmail.com"]] as const;
+import { projects, proofPoints, socials } from "./data/site";
+
+const socialIcons: Record<string, IconType> = {
+  LinkedIn: FaLinkedinIn,
+  Instagram: FaInstagram,
+  X: FaXTwitter,
+  Email: FaEnvelope,
+};
 
 export default function Home() {
-  return <main>
-    <section id="hero" className="hero" aria-labelledby="hero-title">
-      <nav className="hero-nav" aria-label="Primary navigation"><a className="wordmark" href="#hero">Victor Qi</a><div><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#contact">Contact</a></div></nav>
-      <div className="hero-heading"><p>Operator · Builder · Northeastern</p><h1 id="hero-title">Victor Qi</h1></div>
-      <p className="hero-phrase">I love being Victor its awesome</p>
-      <a className="hero-scroll" href="#intro" aria-label="Scroll to introduction"><ArrowDown aria-hidden="true" /></a>
-    </section>
-    <div className="editorial-page">
-      <section id="intro" className="intro section-shell" aria-labelledby="intro-title">
-        <MotionReveal><p className="kicker">01 / Profile</p><h2 id="intro-title">I build at the intersection of operations, technology, and customer behavior.</h2></MotionReveal>
-        <MotionReveal className="intro-copy" delay={0.08}><p>I’m a Northeastern business student who has operated real ventures, worked inside an export manufacturer, and learned to turn messy processes into practical systems.</p><p>My strongest work combines commercial judgment with execution: understanding the constraint, making the tradeoff, and staying close to the customer.</p></MotionReveal>
+  return (
+    <main className="site-shell">
+      <SiteNav />
+
+      <section className="hero section-pad" aria-labelledby="hero-title">
+        <div className="container hero__grid">
+          <div className="hero__copy">
+            <h1 id="hero-title">Victor Qi</h1>
+            <div className="hero__contact" aria-label="Contact methods">
+              <span className="editorial-label">Contact / selected links</span>
+              <div className="hero-contact-links" aria-label="Contact links">
+                {socials.map((social) => {
+                  const SocialIcon = socialIcons[social.label];
+
+                  return (
+                    <a
+                      key={social.label}
+                      href={social.href}
+                      target={social.href.startsWith("http") ? "_blank" : undefined}
+                      rel={social.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    >
+                      <SocialIcon aria-hidden="true" size={14} />
+                      {social.label}
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          <aside className="intro-card intro-card--facts" id="profile" aria-label="Victor Qi profile snapshot">
+            <span>Profile</span>
+            <dl>
+              <div>
+                <dt>Education</dt>
+                <dd>
+                  <HuskyLink href="https://www.northeastern.edu">Northeastern University</HuskyLink>
+                </dd>
+              </div>
+              <div>
+                <dt>Class</dt>
+                <dd>2029</dd>
+              </div>
+              <div>
+                <dt>Year</dt>
+                <dd>Sophomore</dd>
+              </div>
+              <div>
+                <dt>Major</dt>
+                <dd>Business Administration</dd>
+              </div>
+              <div>
+                <dt>Concentrations</dt>
+                <dd>Supply Chain Management &amp; Management</dd>
+              </div>
+              <div>
+                <dt>GPA</dt>
+                <dd>3.97</dd>
+              </div>
+            </dl>
+          </aside>
+        </div>
       </section>
-      <section id="projects" className="section-shell section-block" aria-labelledby="projects-title">
-        <MotionReveal className="section-heading"><p className="kicker">02 / Selected projects</p><h2 id="projects-title">Work that shows how I think.</h2><p>Concise case studies focused on the problem, my contribution, and the signal each project provides.</p></MotionReveal>
-        <div className="project-list">{projects.map((project,index)=><MotionReveal className="project-wrap" delay={index*.06} key={project.name}><article className="project-case"><header><span>0{index+1}</span><p>{project.eyebrow}</p><h3>{project.name}</h3></header><dl><div><dt>Challenge</dt><dd>{project.challenge}</dd></div><div><dt>Contribution</dt><dd>{project.contribution}</dd></div><div><dt>Recruiter signal</dt><dd>{project.signal}</dd></div></dl><ul aria-label={`${project.name} skills`}>{project.skills.map(skill=><li key={skill}>{skill}</li>)}</ul></article></MotionReveal>)}</div>
+
+      <section className="section-pad projects-register" id="projects" aria-labelledby="projects-title">
+        <div className="container section-stack">
+          <Reveal>
+            <SectionHeader
+              headingId="projects-title"
+              eyebrow="Featured projects"
+              title="Current work with enough substance to show."
+              description="A short list of projects and communities I am building around student experiences, markets, and useful systems."
+            />
+          </Reveal>
+          <div className="project-folios">
+            {projects.map((project, index) => (
+              <Reveal className="reveal-card" delay={0.06 + index * 0.08} key={project.name} variant="card">
+                <ProjectCard project={project} priority={index === 0} index={index} />
+              </Reveal>
+            ))}
+          </div>
+
+        </div>
       </section>
-      <section id="experience" className="section-shell section-block" aria-labelledby="experience-title">
-        <MotionReveal className="section-heading"><p className="kicker">03 / Evidence</p><h2 id="experience-title">A record of operating reps.</h2></MotionReveal>
-        <div className="experience-list">{experience.map(([name,detail],index)=><MotionReveal key={name} delay={index*.04}><article><span>0{index+1}</span><h3>{name}</h3><p>{detail}</p></article></MotionReveal>)}</div>
+
+      <section className="section-pad section-pad--muted" aria-labelledby="proof-title">
+        <div className="container section-stack">
+          <Reveal>
+            <SectionHeader
+              headingId="proof-title"
+              eyebrow="Proof"
+              title="A compact record of real operating reps."
+              description="Ventures, internships, and execution-heavy work that shaped how I think about business systems."
+            />
+          </Reveal>
+          <div className="proof-grid" role="list">
+            {proofPoints.map((item, index) => (
+              <Reveal className="reveal-card" delay={0.05 + index * 0.06} key={item.label} variant="card">
+                <article className="proof-card" role="listitem">
+                  <p><b>0{index + 1}</b>{item.label}</p>
+                  <h3>{item.metric}</h3>
+                  <span>{item.description}</span>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
       </section>
-      <section id="contact" className="section-shell section-block contact" aria-labelledby="contact-title">
-        <MotionReveal className="contact-intro"><p className="kicker">04 / Contact</p><h2 id="contact-title">Let’s talk about work worth doing.</h2><p>For internships, operating roles, and thoughtful collaborations.</p><div className="social-links">{socials.map(([label,href])=><a key={label} href={href} target={href.startsWith("http")?"_blank":undefined} rel={href.startsWith("http")?"noopener noreferrer":undefined}>{label}<ArrowUpRight aria-hidden="true" size={16}/></a>)}</div></MotionReveal>
-        <MotionReveal delay={0.08}><ContactForm /></MotionReveal>
-      </section>
-      <footer className="section-shell footer"><p>Victor Qi</p><p>Built with restraint. No invented outcomes.</p></footer>
-    </div>
-  </main>;
+
+      <SiteFooter />
+    </main>
+  );
 }

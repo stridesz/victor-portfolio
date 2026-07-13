@@ -7,6 +7,7 @@ type Ripple = Point & { startedAt: number };
 
 
 const RADIUS = 168;
+const POINTER_ACTIVITY_MS = 200;
 
 function warp(x: number, y: number, pointer: Point | null, velocity: Point, strength: number): Point {
   if (!pointer || strength < 0.001) return { x, y };
@@ -36,6 +37,7 @@ export function AmbientGrid() {
     let frame = 0;
     let time = 0;
     let target: Point | null = null;
+    let lastPointerMove = Number.NEGATIVE_INFINITY;
     let pointer: Point | null = null;
     const velocity: Point = { x: 0, y: 0 };
     let field = 0;
@@ -126,7 +128,7 @@ export function AmbientGrid() {
     const tick = (now: number) => {
       time = now;
       const interactive = finePointer.matches && !reducedMotion.matches;
-      const desiredField = target && interactive ? 1 : 0;
+      const desiredField = target && interactive && now - lastPointerMove <= POINTER_ACTIVITY_MS ? 1 : 0;
       field += (desiredField - field) * 0.1;
       if (target) {
         if (!pointer) pointer = { ...target };
@@ -166,6 +168,7 @@ export function AmbientGrid() {
     const move = (event: PointerEvent) => {
       if (event.pointerType !== "mouse" || reducedMotion.matches || !finePointer.matches) return;
       target = { x: event.clientX, y: event.clientY };
+      lastPointerMove = performance.now();
       start();
     };
     const leave = () => { target = null; start(); };

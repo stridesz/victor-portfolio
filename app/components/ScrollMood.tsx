@@ -1,10 +1,13 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 // Mark the projects register while it owns the center of the viewport. The
 // attribute only adjusts the ambient grid; the section supplies its own paper.
 export function ScrollMood() {
+  const pathname = usePathname();
+
   useEffect(() => {
     const section = document.getElementById("projects");
     const root = document.documentElement;
@@ -31,7 +34,7 @@ export function ScrollMood() {
       observer.disconnect();
       root.removeAttribute("data-mood");
     };
-  }, []);
+  }, [pathname]);
 
   return null;
 }
