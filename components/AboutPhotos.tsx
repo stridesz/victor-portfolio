@@ -80,7 +80,7 @@ export default function AboutPhotos() {
         </button>
 
         {/* One indicator per photo: emoji when the photo has one, otherwise a dot */}
-        <div className="absolute bottom-3 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2.5 rounded-full bg-white/70 px-3 py-1.5 backdrop-blur-sm">
+        <div className="absolute bottom-3 left-1/2 z-10 flex -translate-x-1/2 items-center gap-3 rounded-full bg-white/70 px-4 py-2 backdrop-blur-sm">
           {photos.map((photo, i) => (
             <button
               key={photo.src}
@@ -93,7 +93,7 @@ export default function AboutPhotos() {
               {photo.icon ? (
                 <span
                   aria-hidden
-                  className={`text-[13px] leading-none transition-opacity ${
+                  className={`text-[16px] leading-none transition-opacity ${
                     i === photoIndex ? "opacity-100" : "opacity-35 hover:opacity-70"
                   }`}
                 >
@@ -102,7 +102,7 @@ export default function AboutPhotos() {
               ) : (
                 <span
                   aria-hidden
-                  className={`h-1.5 w-1.5 rounded-full transition-colors ${
+                  className={`h-2 w-2 rounded-full transition-colors ${
                     i === photoIndex ? "bg-ink" : "bg-meta/50 hover:bg-meta"
                   }`}
                 />
