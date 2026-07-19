@@ -39,39 +39,11 @@ export type AboutPhoto = {
 };
 
 // ---------------------------------------------------------------------------
-// TEMPORARY STAND-IN PHOTOS
-// These reuse existing ledger images purely so the photos card demonstrates
-// real behavior (crossfade, indicators, lightbox). Victor: replace each
-// photo's src/alt/caption/sizeClass/icon, and add or remove photos, once
-// final photos are chosen. Drop the files under public/media/about/ and
-// point src at them (e.g. "/media/about/my-photo.jpg").
+// PHOTOS — awaiting Victor's final picks. Drop files under public/media/about/
+// and add one entry per photo below (src, alt, caption, sizeClass matching the
+// source dimensions, optional emoji icon for the indicator row).
 // ---------------------------------------------------------------------------
-export const aboutPhotos: AboutPhoto[] = [
-  {
-    src: "/media/tablr/tablr-dorm-build.png",
-    alt: "Finishing the first version of Tablr in a freshman dorm",
-    caption:
-      "Finishing the first version of Tablr late at night in my freshman dorm in New York City.",
-    sizeClass: "aspect-[1097/673] max-h-[50vh]",
-    icon: "💻",
-  },
-  {
-    src: "/media/huaren-linen/texworld-fabric-samples.jpeg",
-    alt: "Huaren Linen fabric samples at Texworld NYC",
-    caption:
-      "Huaren Linen fabric samples on display at Texworld NYC in the Javits Center.",
-    sizeClass: "aspect-[800/1067] max-h-[50vh]",
-    icon: "🧵",
-  },
-  {
-    src: "/media/12-pell/men-in-black-halloween.jpg",
-    alt: "Men in Black themed Halloween night at 12 Pell",
-    caption:
-      "Halloween night during freshman year at 12 Pell. Theme: Men in Black.",
-    sizeClass: "aspect-[2160/2880] max-h-[50vh]",
-    icon: "🕶️",
-  },
-];
+export const aboutPhotos: AboutPhoto[] = [];
 
 // Song slot: src and albumArt are intentionally empty (not yet supplied).
 // The player renders fully but stays disabled until src points at a real
@@ -81,4 +53,12 @@ export const track = {
   artist: "Artist",
   src: "",
   albumArt: "",
+};
+
+// Scent slot: name, house, and photo are intentionally empty (not yet
+// supplied). Drop the bottle photo under public/media/about/ and fill these in.
+export const scent = {
+  name: "",
+  house: "",
+  photo: "",
 };

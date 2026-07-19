@@ -3,7 +3,7 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import AboutPhotos from "@/components/AboutPhotos";
 import AboutPlayer from "@/components/AboutPlayer";
-import { introSections, education } from "@/data/about";
+import { introSections, education, scent } from "@/data/about";
 
 export const metadata: Metadata = {
   title: "About · Victor Qi",
@@ -76,16 +76,50 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* On repeat */}
+        {/* Currently on repeat */}
         <section
-          aria-label="On repeat"
+          aria-label="Currently on repeat"
           className="mt-16 border-t border-placeholder pt-10 md:mt-20"
         >
           <h2 className="text-[12px] uppercase tracking-wide text-meta">
-            On repeat
+            Currently on repeat
           </h2>
           <div className="mt-4 max-w-xl">
             <AboutPlayer />
+          </div>
+        </section>
+
+        {/* Current scent */}
+        <section
+          aria-label="Current scent"
+          className="mt-16 border-t border-placeholder pt-10 md:mt-20"
+        >
+          <h2 className="text-[12px] uppercase tracking-wide text-meta">
+            Current scent
+          </h2>
+          <div className="mt-4 flex max-w-xl items-center gap-4">
+            {scent.photo ? (
+              <span className="relative block h-24 w-24 shrink-0 overflow-hidden bg-placeholder">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={scent.photo}
+                  alt={scent.name}
+                  className="h-full w-full object-cover"
+                />
+              </span>
+            ) : (
+              <span className="block h-24 w-24 shrink-0 bg-placeholder" />
+            )}
+            <div className="text-[13px] leading-relaxed md:text-sm">
+              {scent.name ? (
+                <>
+                  <p>{scent.name}</p>
+                  {scent.house ? <p className="text-meta">{scent.house}</p> : null}
+                </>
+              ) : (
+                <p className="text-meta">Coming soon.</p>
+              )}
+            </div>
           </div>
         </section>
       </main>

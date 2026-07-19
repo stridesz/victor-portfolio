@@ -24,6 +24,16 @@ export default function AboutPhotos() {
     return () => window.clearInterval(id);
   }, [paused, photos.length]);
 
+  if (photos.length === 0) {
+    return (
+      <div className="relative flex aspect-[4/3] max-h-[55vh] w-full items-center justify-center bg-placeholder">
+        <span className="text-[12px] uppercase tracking-wide text-meta">
+          Photos coming soon
+        </span>
+      </div>
+    );
+  }
+
   const openPhoto = () => {
     const photo = photos[photoIndex];
     const slot: MediaSlot = {
