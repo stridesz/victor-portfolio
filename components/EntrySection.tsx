@@ -16,33 +16,41 @@ function MediaPlaceholder({
   const labelText =
     slot.src && slot.kind === "video" ? "Video — Instagram reel" : slot.label;
   return (
-    <button
-      type="button"
-      onClick={() =>
-        openStory({
-          title: entry.title,
-          year: entry.year,
-          storyText: entry.note,
-          specialThanks: entry.specialThanks,
-          media: slot,
-        })
-      }
-      className={`group block w-full cursor-pointer bg-placeholder ${slot.sizeClass} relative overflow-hidden text-left transition-transform transition-shadow duration-200 ease-out hover:scale-[1.02] hover:shadow-lg hover:shadow-black/10`}
-      aria-label={`View ${slot.label} for ${entry.title}`}
-    >
+    <div>
+      <button
+        type="button"
+        onClick={() =>
+          openStory({
+            title: entry.title,
+            year: entry.year,
+            storyText: entry.note,
+            specialThanks: entry.specialThanks,
+            media: slot,
+          })
+        }
+        className={`group block w-full cursor-pointer bg-placeholder ${slot.sizeClass} relative overflow-hidden text-left transition-transform transition-shadow duration-200 ease-out hover:scale-[1.02] hover:shadow-lg hover:shadow-black/10`}
+        aria-label={`View ${slot.label} for ${entry.title}`}
+      >
+        {imgSrc ? (
+          <Image
+            src={imgSrc}
+            alt={slot.label}
+            fill
+            className="object-cover"
+            sizes="(min-width: 768px) 45vw, 100vw"
+          />
+        ) : (
+          <span className="absolute left-3 top-3 text-[12px] uppercase tracking-wide text-meta group-hover:text-ink transition-colors">
+            {labelText}
+          </span>
+        )}
+      </button>
       {imgSrc ? (
-        <Image
-          src={imgSrc}
-          alt={slot.label}
-          fill
-          className="object-cover"
-          sizes="(min-width: 768px) 45vw, 100vw"
-        />
+        <p className="mt-2 text-[12px] uppercase tracking-wide text-meta">
+          {labelText}
+        </p>
       ) : null}
-      <span className="absolute left-3 top-3 text-[12px] uppercase tracking-wide text-meta group-hover:text-ink transition-colors">
-        {labelText}
-      </span>
-    </button>
+    </div>
   );
 }
 
