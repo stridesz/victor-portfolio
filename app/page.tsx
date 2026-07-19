@@ -24,7 +24,15 @@ export default function Page() {
                 About
               </a>
               <a
-                href="mailto:hello@victorqi.com"
+                href="https://www.linkedin.com/in/victor-qi"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-meta transition-colors"
+              >
+                LinkedIn
+              </a>
+              <a
+                href="mailto:victorqi0707@gmail.com"
                 className="hover:text-meta transition-colors"
               >
                 Email
@@ -66,7 +74,7 @@ export default function Page() {
           </main>
 
           <footer className="border-t border-placeholder py-10 text-[13px] text-meta">
-            The Ledger · Victor Qi, 2024–2026.
+            Victor Qi 2026
           </footer>
         </div>
         <StoryPanel />
