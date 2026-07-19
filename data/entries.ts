@@ -108,20 +108,24 @@ export const entries: LedgerEntry[] = [
     title: "12 Pell",
     role: "Intern",
     year: "2025",
-    note: "Intern & event management for a barbershop/community spot with 2M+ TikTok followers. Ask about the Ginger Fringe Incident.",
+    note: "Event management and team coordination for a barbershop and community space with 2M+ TikTok followers. You might know them from the Ginger Fringe Incident.",
     link: "https://www.tiktok.com/@12pell",
     mediaPlaceholders: [
       {
-        label: "Photo 1 · insert here",
+        label: "Korean K9 Rescue × Molly Tea adoption event",
         kind: "photo",
-        caption: "Caption coming soon. What this photo shows.",
-        sizeClass: "aspect-[16/9] max-h-[50vh]",
+        caption:
+          "Helping run a 12 Pell adoption event with Korean K9 Rescue and Molly Tea. Three dogs found homes, with free tea for everyone.",
+        src: "/media/12-pell/korean-k9-molly-tea-adoption.jpg",
+        sizeClass: "aspect-[2160/2880] max-h-[50vh]",
       },
       {
-        label: "Photo 2 · insert here",
+        label: "Men in Black Halloween",
         kind: "photo",
-        caption: "Caption coming soon. What this photo shows.",
-        sizeClass: "aspect-[4/5] max-h-[50vh]",
+        caption:
+          "Halloween night during freshman year, pregaming at 12 Pell with pepperoni pizza. Theme: Men in Black.",
+        src: "/media/12-pell/men-in-black-halloween.jpg",
+        sizeClass: "aspect-[2160/2880] max-h-[50vh]",
       },
     ],
   },
