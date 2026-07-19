@@ -83,7 +83,7 @@ export default function AboutPlayer() {
   return (
     <div className="flex items-center gap-4 md:gap-5">
       {/* Album art (neutral placeholder with a music note until supplied) */}
-      <div className="relative h-36 w-36 shrink-0 overflow-hidden bg-placeholder md:h-64 md:w-64">
+      <div className="relative aspect-[835/729] w-36 shrink-0 overflow-hidden bg-placeholder md:w-64">
         {track.albumArt ? (
           <Image
             src={track.albumArt}
