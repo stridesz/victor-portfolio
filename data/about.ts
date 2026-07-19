@@ -51,7 +51,7 @@ export const aboutPhotos: AboutPhoto[] = [
     alt: "Basketball at Brooklyn Bridge Park beneath a cloudy sky",
     caption: "Basketball at Brooklyn Bridge Park.",
     sizeClass: "aspect-[3/4]",
-    icon: "🌇",
+    icon: "🏙️",
   },
   {
     src: "/media/about/empty-basketball-gym.jpg",
