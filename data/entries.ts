@@ -9,111 +9,94 @@ export type LedgerEntry = {
   id: string;
   title: string;
   role: string;
-  org: string;
   year: string;
-  metaNote?: string;
+  note: string;
+  link?: string;
   mediaPlaceholders: MediaSlot[];
-  storyText: string;
   specialThanks?: string;
 };
 
 export const entries: LedgerEntry[] = [
   {
-    id: "the-fractional-few",
+    id: "fractional-few",
     title: "The Fractional Few",
-    role: "Founder",
-    org: "Independent",
+    role: "Co-founder",
     year: "2026",
-    metaNote: "Includes RSA bot automation",
+    note: "Paid membership community watching reverse-split stocks. Built the automation that tracks and analyzes SEC filings for it.",
+    link: "https://whop.com/the-fractional-few",
     mediaPlaceholders: [
-      { label: "Photo 1 — insert here", kind: "photo", sizeClass: "aspect-[16/10]" },
-      { label: "Video 1 — insert here", kind: "video", sizeClass: "aspect-[4/3]" },
-      { label: "Photo 2 — insert here", kind: "photo", sizeClass: "aspect-[3/4]" },
+      { label: "Photo 1 — insert here", kind: "photo", sizeClass: "aspect-[16/10] max-h-[50vh]" },
+      { label: "Video 1 — insert here", kind: "video", sizeClass: "aspect-[4/3] max-h-[50vh]" },
     ],
-    storyText:
-      "Placeholder narrative for The Fractional Few. Replace with the real account of the practice — the operators involved, the engagements taken on, and the RSA bot automation work that ran underneath it.",
   },
   {
     id: "tablr",
     title: "Tablr",
     role: "Co-founder",
-    org: "Tablr",
     year: "2026",
+    note: "Matches you with college students who share your interests, major, and vibe — then gives you a reason to actually show up.",
+    link: "https://jointablr.com",
     mediaPlaceholders: [
-      { label: "Photo 1 — insert here", kind: "photo", sizeClass: "aspect-[16/10]" },
-      { label: "Photo 2 — insert here", kind: "photo", sizeClass: "aspect-[1/1]" },
+      { label: "Photo 1 — insert here", kind: "photo", sizeClass: "aspect-[16/10] max-h-[50vh]" },
+      { label: "Photo 2 — insert here", kind: "photo", sizeClass: "aspect-[1/1] max-h-[50vh]" },
     ],
-    storyText:
-      "Placeholder narrative for Tablr. Replace with the real account of what was built, who it served, and what came of it.",
   },
   {
     id: "huaren-linen",
     title: "Huaren Linen",
-    role: "AI/ERP Intern",
-    org: "Huaren Linen",
+    role: "Intern · Shenzhen",
     year: "Summer 2026",
-    metaNote: "Shenzhen",
+    note: "Top U.S.-exporting linen company. Learned the business end to end — how an order becomes fabric becomes payment — taught 100+ employees an AI fundamentals & agentic AI class, and attended Alibaba's AI Business Architecture program.",
     mediaPlaceholders: [
-      { label: "Photo 1 — insert here", kind: "photo", sizeClass: "aspect-[3/4]" },
-      { label: "Video 1 — insert here", kind: "video", sizeClass: "aspect-[16/9]" },
+      { label: "Photo 1 — insert here", kind: "photo", sizeClass: "aspect-[3/4] max-h-[50vh]" },
+      { label: "Video 1 — insert here", kind: "video", sizeClass: "aspect-[16/9] max-h-[50vh]" },
     ],
-    storyText:
-      "Placeholder narrative for Huaren Linen. Replace with notes on the AI/ERP work in Shenzhen — the systems touched, the people, the factory floor.",
   },
   {
     id: "12-pell",
     title: "12 Pell",
     role: "Intern",
-    org: "TikTok",
     year: "2025",
+    note: "Intern & event management for a barbershop/community spot with 2M+ TikTok followers. Ask about the Ginger Fringe Incident.",
+    link: "https://www.tiktok.com/@12pell",
     mediaPlaceholders: [
-      { label: "Photo 1 — insert here", kind: "photo", sizeClass: "aspect-[16/9]" },
-      { label: "Photo 2 — insert here", kind: "photo", sizeClass: "aspect-[4/5]" },
+      { label: "Photo 1 — insert here", kind: "photo", sizeClass: "aspect-[16/9] max-h-[50vh]" },
+      { label: "Photo 2 — insert here", kind: "photo", sizeClass: "aspect-[4/5] max-h-[50vh]" },
     ],
-    storyText:
-      "Placeholder narrative for 12 Pell. Replace with the story of the internship inside TikTok — the team, the work, the barbershop.",
-  },
-  {
-    id: "stride-retail",
-    title: "Stride Retail",
-    role: "Founder",
-    org: "Stride Retail",
-    year: "2025",
-    metaNote: "$280K peak year",
-    mediaPlaceholders: [
-      { label: "Photo 1 — insert here", kind: "photo", sizeClass: "aspect-[1/1]" },
-      { label: "Photo 2 — insert here", kind: "photo", sizeClass: "aspect-[16/10]" },
-    ],
-    storyText:
-      "Placeholder narrative for Stride Retail. Replace with the account of the operation that reached a $280K peak year — sourcing, selling, and what it taught.",
   },
   {
     id: "swipe-signals",
     title: "Swipe Signals",
-    role: "Founder",
-    org: "Swipe Signals",
+    role: "Co-founder",
     year: "2024",
-    metaNote: "$35 MRR",
+    note: "Bot reselling group turned ticket reselling group. First 100 memberships sold out in 3 minutes. 150+ five-star reviews. $35K peak MRR.",
+    link: "https://whop.com/swipesignals",
     mediaPlaceholders: [
-      { label: "Photo 1 — insert here", kind: "photo", sizeClass: "aspect-[4/3]" },
-      { label: "Photo 2 — insert here", kind: "photo", sizeClass: "aspect-[3/4]" },
+      { label: "Photo 1 — insert here", kind: "photo", sizeClass: "aspect-[4/3] max-h-[50vh]" },
+      { label: "Photo 2 — insert here", kind: "photo", sizeClass: "aspect-[3/4] max-h-[50vh]" },
     ],
-    storyText:
-      "Placeholder narrative for Swipe Signals. Replace with the honest story of a product that peaked at $35 MRR — and why that still counts.",
   },
   {
     id: "deca",
     title: "DECA",
     role: "Founder & President",
-    org: "DECA",
     year: "2024",
-    metaNote: "~30% of class signed up",
+    note: "Founded my high school's DECA chapter after being underwhelmed by the school's business offerings. 30% of the class signed up in the first week; sent 3 people to ICDC in year one.",
     mediaPlaceholders: [
-      { label: "Photo 1 — insert here", kind: "photo", sizeClass: "aspect-[16/10]" },
-      { label: "Video 1 — insert here", kind: "video", sizeClass: "aspect-[4/3]" },
+      { label: "Photo 1 — insert here", kind: "photo", sizeClass: "aspect-[16/10] max-h-[50vh]" },
+      { label: "Video 1 — insert here", kind: "video", sizeClass: "aspect-[4/3] max-h-[50vh]" },
     ],
-    storyText:
-      "Placeholder narrative for DECA. Replace with how the chapter was founded and grew to roughly a third of the class signing up.",
     specialThanks: "Special thanks to the founding officers and advisors.",
+  },
+  {
+    id: "stride-retail",
+    title: "Stride Retail",
+    role: "Founder",
+    year: "",
+    note: "Started reselling Supreme and sneakers as a 5th grader. Grew it into Stride Retail LLC — Amazon FBA, wholesale contacts, ticket reselling. $280K peak year revenue.",
+    mediaPlaceholders: [
+      { label: "Photo 1 — insert here", kind: "photo", sizeClass: "aspect-[1/1] max-h-[50vh]" },
+      { label: "Photo 2 — insert here", kind: "photo", sizeClass: "aspect-[16/10] max-h-[50vh]" },
+    ],
   },
 ];

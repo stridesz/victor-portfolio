@@ -18,7 +18,7 @@ function MediaPlaceholder({
         openStory({
           title: entry.title,
           year: entry.year,
-          storyText: entry.storyText,
+          storyText: entry.note,
           specialThanks: entry.specialThanks,
         })
       }
@@ -32,6 +32,17 @@ function MediaPlaceholder({
   );
 }
 
+function formatLinkDisplay(link: string): string {
+  try {
+    const url = new URL(link);
+    const host = url.hostname.replace(/^www\./, "");
+    const path = url.pathname === "/" ? "" : url.pathname;
+    return `↳ ${host}${path}`;
+  } catch {
+    return `↳ ${link}`;
+  }
+}
+
 export default function EntrySection({ entry }: { entry: LedgerEntry }) {
   return (
     <section
@@ -39,10 +50,12 @@ export default function EntrySection({ entry }: { entry: LedgerEntry }) {
       data-entry
       className="scroll-mt-24 border-t border-placeholder pt-10 md:pt-14"
     >
-      <div className="grid gap-8 md:grid-cols-[220px_1fr] md:gap-12">
-        {/* Metadata — left aligned */}
+      <div className="grid gap-8 md:grid-cols-[2fr_3fr] md:gap-12">
+        {/* Metadata — left aligned, ~40% width */}
         <div className="text-[13px] leading-relaxed md:text-sm">
-          <p className="text-meta">{entry.year}</p>
+          {entry.year ? (
+            <p className="text-meta">{entry.year}</p>
+          ) : null}
           <h2 className="mt-1 text-2xl font-semibold leading-tight md:text-[28px]">
             {entry.title}
           </h2>
@@ -52,18 +65,24 @@ export default function EntrySection({ entry }: { entry: LedgerEntry }) {
               <dd>{entry.role}</dd>
             </div>
             <div className="flex gap-2">
-              <dt className="text-meta">Org</dt>
-              <dd>{entry.org}</dd>
+              <dt className="text-meta">Note</dt>
+              <dd className="text-meta">{entry.note}</dd>
             </div>
-            {entry.metaNote ? (
-              <div className="flex gap-2">
-                <dt className="text-meta">Note</dt>
-                <dd className="text-meta">{entry.metaNote}</dd>
-              </div>
-            ) : null}
           </dl>
+          {entry.link ? (
+            <p className="mt-3 text-meta">
+              <a
+                href={entry.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline underline-offset-2"
+              >
+                {formatLinkDisplay(entry.link)}
+              </a>
+            </p>
+          ) : null}
         </div>
-        {/* Media gallery — right/center, honest varied sizes */}
+        {/* Media gallery — right/center, honest varied sizes, capped height */}
         <div className="flex flex-wrap items-start gap-4">
           {entry.mediaPlaceholders.map((slot, i) => (
             <div
