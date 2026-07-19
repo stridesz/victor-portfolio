@@ -58,7 +58,7 @@ export const track = {
 // Scent slot: name, house, and photo are intentionally empty (not yet
 // supplied). Drop the bottle photo under public/media/about/ and fill these in.
 export const scent = {
-  name: "",
-  house: "",
-  photo: "",
+  name: "Jasmine 17",
+  house: "Le Labo",
+  photo: "/media/about/le-labo-jasmine-17.png",
 };
