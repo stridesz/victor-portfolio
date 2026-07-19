@@ -1,5 +1,7 @@
 export type MediaSlot = {
   label: string;
+  /** Short label shown beneath the ledger preview when it should differ from the media's descriptive/accessibility label. */
+  previewLabel?: string;
   kind: "photo" | "video";
   caption: string;
   /** Tailwind aspect utility or explicit size classes for varied, honest placeholder shapes */
@@ -44,6 +46,7 @@ export const entries: LedgerEntry[] = [
       },
       {
         label: "The Fractional Few reel",
+        previewLabel: "Video · Instagram reel",
         kind: "video",
         caption:
           "Reel from The Fractional Few Instagram. Reverse splits, explained.",
@@ -194,16 +197,22 @@ export const entries: LedgerEntry[] = [
     note: "Started reselling Supreme and sneakers as a 5th grader. Grew it into Stride Retail LLC, expanding into Amazon FBA, wholesale contacts, and ticket reselling. $280K peak year revenue.",
     mediaPlaceholders: [
       {
-        label: "Photo 1 · insert here",
-        kind: "photo",
-        caption: "Caption coming soon. What this photo shows.",
-        sizeClass: "aspect-[1/1] max-h-[50vh]",
+        label: "Supreme FW18 Box Logo Crewneck",
+        previewLabel: "What started it all",
+        kind: "video",
+        caption: "Supreme FW18 Box Logo Crewneck. Sold out in 3.7 seconds.",
+        sizeClass: "aspect-[2160/2880] max-h-[50vh]",
+        src: "/media/stride-retail/supreme-box-logo.mp4",
+        poster: "/media/stride-retail/supreme-box-logo-poster.jpg",
       },
       {
-        label: "Photo 2 · insert here",
-        kind: "photo",
-        caption: "Caption coming soon. What this photo shows.",
-        sizeClass: "aspect-[16/10] max-h-[50vh]",
+        label: "100+ Jordan 11 Jubilees at retail",
+        previewLabel: "100+ Jubilees at retail",
+        kind: "video",
+        caption: "Hitting 100+ pairs of Jordan 11 Jubilees at retail.",
+        sizeClass: "aspect-[480/820] max-h-[50vh]",
+        src: "/media/stride-retail/jordan-11-jubilee-retail.mp4",
+        poster: "/media/stride-retail/jordan-11-jubilee-poster.jpg",
       },
     ],
   },

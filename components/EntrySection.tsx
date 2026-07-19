@@ -13,8 +13,7 @@ function MediaPlaceholder({
 }) {
   const { openStory } = useStoryPanel();
   const imgSrc = slot.kind === "video" ? slot.poster : slot.src;
-  const labelText =
-    slot.src && slot.kind === "video" ? "Video · Instagram reel" : slot.label;
+  const labelText = slot.previewLabel ?? slot.label;
   return (
     <div>
       <button
