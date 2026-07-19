@@ -178,7 +178,7 @@ export const entries: LedgerEntry[] = [
         externalLabel: "View on X",
       },
       {
-        label: "Swipe Signals early access launch",
+        label: "Early Access Launch",
         kind: "photo",
         caption: "The start of something cool. We had it jumping out the gate.",
         sizeClass: "aspect-[605/596] max-h-[50vh]",
