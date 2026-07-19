@@ -23,7 +23,7 @@ export const introSections: IntroSection[] = [
 ];
 
 export const education = {
-  school: "Northeastern University",
+  school: "Northeastern University '29",
   major: "Business Administration",
   concentrations: "Management & Supply Chain Management",
 };
@@ -34,69 +34,42 @@ export type AboutPhoto = {
   caption: string;
   /** Tailwind aspect utility matching the source image dimensions (honest placeholder shape in the lightbox) */
   sizeClass: string;
-};
-
-export type PhotoCategory = {
-  id: string;
-  label: string;
-  photos: AboutPhoto[];
+  /** Optional emoji shown as this photo's indicator under the card. Falls back to a plain dot when omitted. */
+  icon?: string;
 };
 
 // ---------------------------------------------------------------------------
 // TEMPORARY STAND-IN PHOTOS
 // These reuse existing ledger images purely so the photos card demonstrates
-// real behavior (crossfade, categories, lightbox). Victor: replace each
-// photo's src/alt/caption/sizeClass, and add or remove photos per category,
-// once final photos are chosen. Drop the files under public/media/about/ and
+// real behavior (crossfade, indicators, lightbox). Victor: replace each
+// photo's src/alt/caption/sizeClass/icon, and add or remove photos, once
+// final photos are chosen. Drop the files under public/media/about/ and
 // point src at them (e.g. "/media/about/my-photo.jpg").
 // ---------------------------------------------------------------------------
-export const photoCategories: PhotoCategory[] = [
+export const aboutPhotos: AboutPhoto[] = [
   {
-    id: "everything",
-    label: "Everything",
-    photos: [
-      {
-        src: "/media/tablr/tablr-dorm-build.png",
-        alt: "Finishing the first version of Tablr in a freshman dorm",
-        caption:
-          "Finishing the first version of Tablr late at night in my freshman dorm in New York City.",
-        sizeClass: "aspect-[1097/673] max-h-[50vh]",
-      },
-      {
-        src: "/media/huaren-linen/texworld-fabric-samples.jpeg",
-        alt: "Huaren Linen fabric samples at Texworld NYC",
-        caption:
-          "Huaren Linen fabric samples on display at Texworld NYC in the Javits Center.",
-        sizeClass: "aspect-[800/1067] max-h-[50vh]",
-      },
-      {
-        src: "/media/12-pell/men-in-black-halloween.jpg",
-        alt: "Men in Black themed Halloween night at 12 Pell",
-        caption:
-          "Halloween night during freshman year at 12 Pell. Theme: Men in Black.",
-        sizeClass: "aspect-[2160/2880] max-h-[50vh]",
-      },
-    ],
+    src: "/media/tablr/tablr-dorm-build.png",
+    alt: "Finishing the first version of Tablr in a freshman dorm",
+    caption:
+      "Finishing the first version of Tablr late at night in my freshman dorm in New York City.",
+    sizeClass: "aspect-[1097/673] max-h-[50vh]",
+    icon: "💻",
   },
   {
-    id: "wiggles",
-    label: "Wiggles",
-    photos: [
-      {
-        src: "/media/12-pell/men-in-black-halloween.jpg",
-        alt: "Men in Black themed Halloween night at 12 Pell",
-        caption:
-          "Halloween night during freshman year at 12 Pell. Theme: Men in Black.",
-        sizeClass: "aspect-[2160/2880] max-h-[50vh]",
-      },
-      {
-        src: "/media/tablr/tablr-dorm-build.png",
-        alt: "Finishing the first version of Tablr in a freshman dorm",
-        caption:
-          "Finishing the first version of Tablr late at night in my freshman dorm in New York City.",
-        sizeClass: "aspect-[1097/673] max-h-[50vh]",
-      },
-    ],
+    src: "/media/huaren-linen/texworld-fabric-samples.jpeg",
+    alt: "Huaren Linen fabric samples at Texworld NYC",
+    caption:
+      "Huaren Linen fabric samples on display at Texworld NYC in the Javits Center.",
+    sizeClass: "aspect-[800/1067] max-h-[50vh]",
+    icon: "🧵",
+  },
+  {
+    src: "/media/12-pell/men-in-black-halloween.jpg",
+    alt: "Men in Black themed Halloween night at 12 Pell",
+    caption:
+      "Halloween night during freshman year at 12 Pell. Theme: Men in Black.",
+    sizeClass: "aspect-[2160/2880] max-h-[50vh]",
+    icon: "🕶️",
   },
 ];
 
