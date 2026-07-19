@@ -135,6 +135,7 @@ export const entries: LedgerEntry[] = [
     role: "Founder & President",
     year: "2024",
     note: "Founded my high school's DECA chapter after being underwhelmed by the school's business offerings. 30% of the class signed up in the first week; sent 3 people to ICDC in year one.",
+    link: "https://www.ravenscroft.org/our-community/news/story-page/~board/news/post/ravens-accelerate-future-paths-with-shuford-and-deca",
     mediaPlaceholders: [
       {
         label: "DECA progression of engagement",
