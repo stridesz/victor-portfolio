@@ -40,3 +40,39 @@ body {
   background: var(--color-ink);
   color: var(--color-paper);
 }
+
+/* Thin seek bar for the About player: 2px track, ink fill up to --seek-fill */
+input[type="range"].seek {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 2px;
+  border-radius: 9999px;
+  background: linear-gradient(
+    to right,
+    var(--color-ink) var(--seek-fill, 0%),
+    var(--color-placeholder) var(--seek-fill, 0%)
+  );
+  outline: none;
+  cursor: pointer;
+}
+
+input[type="range"].seek:disabled {
+  cursor: not-allowed;
+}
+
+input[type="range"].seek::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background: var(--color-ink);
+}
+
+input[type="range"].seek::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  border: none;
+  border-radius: 9999px;
+  background: var(--color-ink);
+}

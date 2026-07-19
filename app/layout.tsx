@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { StoryPanelProvider } from "@/components/StoryPanelContext";
+import StoryPanel from "@/components/StoryPanel";
 import "./globals.css";
 
 const inter = Inter({
@@ -20,7 +22,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.variable}>
-      <body className="bg-paper text-ink font-sans">{children}</body>
+      <body className="bg-paper text-ink font-sans">
+        <StoryPanelProvider>
+          {children}
+          <StoryPanel />
+        </StoryPanelProvider>
+      </body>
     </html>
   );
 }
