@@ -89,8 +89,8 @@ export default function AboutPlayer() {
             src={track.albumArt}
             alt={`${track.title} album art`}
             fill
+            unoptimized
             className="object-cover"
-            sizes="96px"
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center text-meta">
