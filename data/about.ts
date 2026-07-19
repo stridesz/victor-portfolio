@@ -38,12 +38,48 @@ export type AboutPhoto = {
   icon?: string;
 };
 
-// ---------------------------------------------------------------------------
-// PHOTOS — awaiting Victor's final picks. Drop files under public/media/about/
-// and add one entry per photo below (src, alt, caption, sizeClass matching the
-// source dimensions, optional emoji icon for the indicator row).
-// ---------------------------------------------------------------------------
-export const aboutPhotos: AboutPhoto[] = [];
+export const aboutPhotos: AboutPhoto[] = [
+  {
+    src: "/media/about/los-angeles-skyline.jpg",
+    alt: "Los Angeles skyline beneath a wide blue sky",
+    caption: "Los Angeles from above.",
+    sizeClass: "aspect-[3/4]",
+  },
+  {
+    src: "/media/about/brooklyn-bridge-park-basketball.jpg",
+    alt: "Basketball at Brooklyn Bridge Park beneath a cloudy sky",
+    caption: "Basketball at Brooklyn Bridge Park.",
+    sizeClass: "aspect-[3/4]",
+    icon: "🏀",
+  },
+  {
+    src: "/media/about/empty-basketball-gym.jpg",
+    alt: "Basketball and shoes beside an empty indoor court",
+    caption: "An empty court.",
+    sizeClass: "aspect-[1206/2144]",
+    icon: "🏀",
+  },
+  {
+    src: "/media/about/japan-temple.jpg",
+    alt: "Red temple architecture beneath a blue sky in Japan",
+    caption: "Looking up in Japan.",
+    sizeClass: "aspect-[3/4]",
+  },
+  {
+    src: "/media/about/wiggles-rose.jpg",
+    alt: "Wiggles holding a red rose",
+    caption: "Wiggles with a rose.",
+    sizeClass: "aspect-[3/4]",
+    icon: "🌹",
+  },
+  {
+    src: "/media/about/two-goldens-at-home.jpg",
+    alt: "Two golden retrievers together at home",
+    caption: "Two goldens at home.",
+    sizeClass: "aspect-[4/3]",
+    icon: "🐕",
+  },
+];
 
 // Song slot: src and albumArt are intentionally empty (not yet supplied).
 // The player renders fully but stays disabled until src points at a real

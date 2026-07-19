@@ -72,8 +72,8 @@ export default function AboutPhotos() {
                 src={photo.src}
                 alt=""
                 fill
-                className="object-cover"
-                sizes="(min-width: 768px) 60vw, 100vw"
+                className="object-contain"
+                sizes="(min-width: 1024px) 768px, (min-width: 768px) calc(100vw - 80px), calc(100vw - 48px)"
               />
             </span>
           ))}
