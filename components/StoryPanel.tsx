@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { useStoryPanel } from "./StoryPanelContext";
 
@@ -10,6 +11,12 @@ export default function StoryPanel() {
   const { panel, closeStory } = useStoryPanel();
   const panelRef = useRef<HTMLDivElement>(null);
   const lastActiveRef = useRef<HTMLElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Pause the reel when the panel closes (it stays mounted off-screen)
+  useEffect(() => {
+    if (!panel.open) videoRef.current?.pause();
+  }, [panel.open]);
 
   // Focus management + simple focus trap
   useEffect(() => {
@@ -100,18 +107,55 @@ export default function StoryPanel() {
           {media ? (
             <div className="mt-8 flex flex-col gap-6 md:flex-row md:items-start">
               <div className="md:w-[62%] md:shrink-0">
-                <div
-                  className={`relative w-full bg-placeholder ${media.sizeClass} overflow-hidden`}
-                >
-                  <span className="absolute left-3 top-3 text-[12px] uppercase tracking-wide text-meta">
-                    {media.label}
-                  </span>
-                </div>
+                {media.src && media.kind === "video" ? (
+                  <video
+                    key={media.src}
+                    ref={videoRef}
+                    src={media.src}
+                    poster={media.poster}
+                    autoPlay
+                    controls
+                    playsInline
+                    className="w-full bg-black"
+                  />
+                ) : media.src ? (
+                  <div
+                    className={`relative w-full ${media.sizeClass} overflow-hidden`}
+                  >
+                    <Image
+                      src={media.src}
+                      alt={media.label}
+                      fill
+                      className="object-cover"
+                      sizes="(min-width: 768px) 446px, 100vw"
+                    />
+                  </div>
+                ) : (
+                  <div
+                    className={`relative w-full bg-placeholder ${media.sizeClass} overflow-hidden`}
+                  >
+                    <span className="absolute left-3 top-3 text-[12px] uppercase tracking-wide text-meta">
+                      {media.label}
+                    </span>
+                  </div>
+                )}
               </div>
               <div className="md:flex-1">
                 <p className="text-[13px] leading-relaxed text-meta">
                   {media.caption}
                 </p>
+                {media.externalUrl ? (
+                  <p className="mt-3 text-[13px] text-meta">
+                    <a
+                      href={media.externalUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:underline underline-offset-2"
+                    >
+                      ↳ Watch on Instagram
+                    </a>
+                  </p>
+                ) : null}
               </div>
             </div>
           ) : null}

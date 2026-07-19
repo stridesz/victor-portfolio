@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import type { LedgerEntry, MediaSlot } from "@/data/entries";
 import { useStoryPanel } from "./StoryPanelContext";
 
@@ -11,6 +12,9 @@ function MediaPlaceholder({
   slot: MediaSlot;
 }) {
   const { openStory } = useStoryPanel();
+  const imgSrc = slot.kind === "video" ? slot.poster : slot.src;
+  const labelText =
+    slot.src && slot.kind === "video" ? "Video — Instagram reel" : slot.label;
   return (
     <button
       type="button"
@@ -26,11 +30,29 @@ function MediaPlaceholder({
       className={`group block w-full cursor-pointer bg-placeholder ${slot.sizeClass} relative overflow-hidden text-left transition-transform transition-shadow duration-200 ease-out hover:scale-[1.02] hover:shadow-lg hover:shadow-black/10`}
       aria-label={`View ${slot.label} for ${entry.title}`}
     >
+      {imgSrc ? (
+        <Image
+          src={imgSrc}
+          alt={slot.label}
+          fill
+          className="object-cover"
+          sizes="(min-width: 768px) 45vw, 100vw"
+        />
+      ) : null}
       <span className="absolute left-3 top-3 text-[12px] uppercase tracking-wide text-meta group-hover:text-ink transition-colors">
-        {slot.label}
+        {labelText}
       </span>
     </button>
   );
+}
+
+/** Parse an aspect-[W/H] utility into a ratio; wide slots get the larger column share */
+function isWideSlot(sizeClass: string): boolean {
+  const m = sizeClass.match(
+    /aspect-\[(\d+(?:\.\d+)?)\s*\/\s*(\d+(?:\.\d+)?)\]/
+  );
+  if (m) return parseFloat(m[1]) / parseFloat(m[2]) >= 1.2;
+  return sizeClass.includes("16") || sizeClass.includes("4/3");
 }
 
 function formatLinkDisplay(link: string): string {
@@ -89,7 +111,7 @@ export default function EntrySection({ entry }: { entry: LedgerEntry }) {
             <div
               key={i}
               className={
-                slot.sizeClass.includes("16") || slot.sizeClass.includes("4/3")
+                isWideSlot(slot.sizeClass)
                   ? "w-full sm:w-[calc(60%-0.5rem)]"
                   : "w-full sm:w-[calc(40%-0.5rem)]"
               }

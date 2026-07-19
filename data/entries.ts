@@ -4,6 +4,12 @@ export type MediaSlot = {
   caption: string;
   /** Tailwind aspect utility or explicit size classes for varied, honest placeholder shapes */
   sizeClass: string;
+  /** Real media source (image or video). When absent, the slot renders as a placeholder. */
+  src?: string;
+  /** Poster image for video slots */
+  poster?: string;
+  /** External link (e.g. Instagram reel) shown in the media viewer */
+  externalUrl?: string;
 };
 
 export type LedgerEntry = {
@@ -27,16 +33,22 @@ export const entries: LedgerEntry[] = [
     link: "https://whop.com/the-fractional-few",
     mediaPlaceholders: [
       {
-        label: "Photo 1 — insert here",
+        label: "QNCX alert × profit",
         kind: "photo",
-        caption: "Caption coming soon — what this photo shows.",
-        sizeClass: "aspect-[16/10] max-h-[50vh]",
+        caption:
+          "The RSA bot flags QNCX as its first big round-up candidate. Right: the profit from that trade.",
+        sizeClass: "aspect-[1248/466] max-h-[50vh]",
+        src: "/media/fractional-few/tff-diptych.png",
       },
       {
-        label: "Video 1 — insert here",
+        label: "The Fractional Few reel",
         kind: "video",
-        caption: "Caption coming soon — what this video shows.",
-        sizeClass: "aspect-[4/3] max-h-[50vh]",
+        caption:
+          "Reel from The Fractional Few Instagram — reverse splits, explained.",
+        sizeClass: "aspect-[480/854] max-h-[50vh]",
+        src: "/media/fractional-few/tff-reel.mp4",
+        poster: "/media/fractional-few/tff-reel-poster.jpg",
+        externalUrl: "https://www.instagram.com/reel/Da-96SERTmp/",
       },
     ],
   },
