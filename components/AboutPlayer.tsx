@@ -131,7 +131,10 @@ export default function AboutPlayer() {
       setVolume(nextVolume);
       setMuted(false);
     } else {
+      previousVolumeRef.current = volume;
+      audio.volume = 0;
       audio.muted = true;
+      setVolume(0);
       setMuted(true);
     }
   };
