@@ -49,10 +49,10 @@ export const aboutPhotos: AboutPhoto[] = [];
 // The player renders fully but stays disabled until src points at a real
 // audio file (e.g. "/media/about/on-repeat.mp3" under public/media/about/).
 export const track = {
-  title: "Song title",
-  artist: "Artist",
-  src: "",
-  albumArt: "",
+  title: "knocking",
+  artist: "Ken Carson",
+  src: "/media/about/knocking.mp3",
+  albumArt: "/media/about/ken-carson-knocking-cd.webp",
 };
 
 // Scent slot: name, house, and photo are intentionally empty (not yet
