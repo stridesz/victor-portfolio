@@ -171,17 +171,16 @@ export const entries: LedgerEntry[] = [
         label: "Finding out I was 13",
         kind: "photo",
         caption:
-          "My future Swipe Signals co-founder finding out I was 13, after already offering me co-ownership.",
-        sizeClass: "aspect-[858/1024] max-h-[50vh]",
-        src: "/media/swipe-signals/cofounder-finds-out-age.jpeg",
+          "My co-founder finding out I was 13, after already offering me co-ownership.",
+        sizeClass: "aspect-[1148/1370] max-h-[50vh]",
+        src: "/media/swipe-signals/cofounder-finds-out-age.png",
         externalUrl: "https://x.com/stridesoles/status/1407861544277348356/photo/1",
         externalLabel: "View on X",
       },
       {
         label: "Swipe Signals early access launch",
         kind: "photo",
-        caption:
-          "The early-access thread that got Swipe Signals moving, led by 777 reposts and 954 likes on the first post.",
+        caption: "The start of something cool. We had it jumping out the gate.",
         sizeClass: "aspect-[605/596] max-h-[50vh]",
         src: "/media/swipe-signals/early-access-launch.png",
       },
