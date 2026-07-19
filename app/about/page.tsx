@@ -99,7 +99,7 @@ export default function AboutPage() {
           </h2>
           <div className="mt-4 flex max-w-xl items-center gap-4 md:gap-5">
             {scent.photo ? (
-              <span className="relative block h-36 w-36 shrink-0 overflow-hidden md:h-56 md:w-56">
+              <span className="relative block h-36 w-36 shrink-0 overflow-hidden md:h-72 md:w-72">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={scent.photo}
@@ -108,7 +108,7 @@ export default function AboutPage() {
                 />
               </span>
             ) : (
-              <span className="block h-28 w-28 shrink-0 bg-placeholder md:h-36 md:w-36" />
+              <span className="block h-36 w-36 shrink-0 bg-placeholder md:h-72 md:w-72" />
             )}
             <div className="text-[13px] leading-relaxed md:text-sm">
               {scent.name ? (
