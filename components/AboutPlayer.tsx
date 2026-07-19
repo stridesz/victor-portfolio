@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { track } from "@/data/about";
 
+const DEFAULT_VOLUME = 0.7;
+
 function formatTime(sec: number): string {
   if (!Number.isFinite(sec) || sec < 0) return "0:00";
   const m = Math.floor(sec / 60);
@@ -29,17 +31,47 @@ function MusicNoteIcon() {
   );
 }
 
+function SpeakerIcon({ muted }: { muted: boolean }) {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <path d="M2.5 6.25h2L7.25 4v8l-2.75-2.25h-2z" />
+      {muted ? (
+        <>
+          <path d="m10.25 6.25 3.5 3.5" />
+          <path d="m13.75 6.25-3.5 3.5" />
+        </>
+      ) : (
+        <path d="M10.25 5.5a3.25 3.25 0 0 1 0 5" />
+      )}
+    </svg>
+  );
+}
+
 export default function AboutPlayer() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const previousVolumeRef = useRef(DEFAULT_VOLUME);
   const [playing, setPlaying] = useState(false);
   const [elapsed, setElapsed] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [volume, setVolume] = useState(DEFAULT_VOLUME);
+  const [muted, setMuted] = useState(false);
   const hasTrack = Boolean(track.src);
 
   useEffect(() => {
     if (!hasTrack) return;
     const audio = new Audio(track.src);
     audio.preload = "metadata";
+    audio.volume = DEFAULT_VOLUME;
     audioRef.current = audio;
 
     const onTime = () => setElapsed(audio.currentTime);
@@ -78,7 +110,35 @@ export default function AboutPlayer() {
     setElapsed(value);
   };
 
+  const changeVolume = (value: number) => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    audio.volume = value;
+    audio.muted = value === 0;
+    setVolume(value);
+    setMuted(value === 0);
+    if (value > 0) previousVolumeRef.current = value;
+  };
+
+  const toggleMute = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (muted || volume === 0) {
+      const nextVolume = volume === 0 ? previousVolumeRef.current : volume;
+      audio.volume = nextVolume;
+      audio.muted = false;
+      setVolume(nextVolume);
+      setMuted(false);
+    } else {
+      audio.muted = true;
+      setMuted(true);
+    }
+  };
+
   const fillPct = duration > 0 ? (elapsed / duration) * 100 : 0;
+  const volumePct = volume * 100;
+  const isVisuallyMuted = muted || volume === 0;
 
   return (
     <div className="flex items-center gap-4 md:gap-5">
@@ -159,6 +219,33 @@ export default function AboutPlayer() {
           <span className="w-9 text-[12px] tabular-nums text-meta">
             {formatTime(duration)}
           </span>
+        </div>
+        <div className="mt-2 flex items-center gap-2">
+          <button
+            type="button"
+            onClick={toggleMute}
+            aria-label={isVisuallyMuted ? "Unmute" : "Mute"}
+            aria-disabled={!hasTrack}
+            className={`-m-1 flex size-7 shrink-0 items-center justify-center transition-colors ${
+              hasTrack
+                ? "text-ink hover:text-meta"
+                : "cursor-not-allowed text-meta/50"
+            }`}
+          >
+            <SpeakerIcon muted={isVisuallyMuted} />
+          </button>
+          <input
+            type="range"
+            aria-label="Volume"
+            className="seek w-24"
+            min={0}
+            max={1}
+            step={0.01}
+            value={volume}
+            disabled={!hasTrack}
+            onChange={(e) => changeVolume(Number(e.target.value))}
+            style={{ "--seek-fill": `${volumePct}%` } as CSSProperties}
+          />
         </div>
       </div>
     </div>
