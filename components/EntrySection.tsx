@@ -20,10 +20,11 @@ function MediaPlaceholder({
           year: entry.year,
           storyText: entry.note,
           specialThanks: entry.specialThanks,
+          media: slot,
         })
       }
-      className={`group block w-full bg-placeholder ${slot.sizeClass} relative overflow-hidden text-left`}
-      aria-label={`Open story for ${entry.title}`}
+      className={`group block w-full cursor-pointer bg-placeholder ${slot.sizeClass} relative overflow-hidden text-left transition-transform transition-shadow duration-200 ease-out hover:scale-[1.02] hover:shadow-lg hover:shadow-black/10`}
+      aria-label={`View ${slot.label} for ${entry.title}`}
     >
       <span className="absolute left-3 top-3 text-[12px] uppercase tracking-wide text-meta group-hover:text-ink transition-colors">
         {slot.label}

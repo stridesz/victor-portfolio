@@ -8,6 +8,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import type { MediaSlot } from "@/data/entries";
 
 type StoryPanelState = {
   open: boolean;
@@ -15,6 +16,7 @@ type StoryPanelState = {
   year: string;
   storyText: string;
   specialThanks?: string;
+  media?: MediaSlot;
 };
 
 export type OpenStoryPayload = Omit<StoryPanelState, "open">;
