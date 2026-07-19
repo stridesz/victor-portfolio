@@ -52,7 +52,7 @@ export const track = {
   title: "knocking",
   artist: "Ken Carson",
   src: "/media/about/knocking.mp3",
-  albumArt: "/media/about/ken-carson-knocking.jpg",
+  albumArt: "/media/about/ken-carson-knocking.png",
 };
 
 // Scent slot: name, house, and photo are intentionally empty (not yet
