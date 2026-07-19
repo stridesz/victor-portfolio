@@ -66,7 +66,7 @@ export default function Page() {
           </main>
 
           <footer className="border-t border-placeholder py-10 text-[13px] text-meta">
-            The Ledger — Victor Qi, 2024 — 2026.
+            The Ledger · Victor Qi, 2024–2026.
           </footer>
         </div>
         <StoryPanel />

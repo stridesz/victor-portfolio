@@ -44,7 +44,7 @@ export const entries: LedgerEntry[] = [
         label: "The Fractional Few reel",
         kind: "video",
         caption:
-          "Reel from The Fractional Few Instagram — reverse splits, explained.",
+          "Reel from The Fractional Few Instagram. Reverse splits, explained.",
         sizeClass: "aspect-[480/854] max-h-[50vh]",
         src: "/media/fractional-few/tff-reel.mp4",
         poster: "/media/fractional-few/tff-reel-poster.jpg",
@@ -61,15 +61,15 @@ export const entries: LedgerEntry[] = [
     link: "https://jointablr.com",
     mediaPlaceholders: [
       {
-        label: "Photo 1 — insert here",
+        label: "Photo 1 · insert here",
         kind: "photo",
-        caption: "Caption coming soon — what this photo shows.",
+        caption: "Caption coming soon. What this photo shows.",
         sizeClass: "aspect-[16/10] max-h-[50vh]",
       },
       {
-        label: "Photo 2 — insert here",
+        label: "Photo 2 · insert here",
         kind: "photo",
-        caption: "Caption coming soon — what this photo shows.",
+        caption: "Caption coming soon. What this photo shows.",
         sizeClass: "aspect-[1/1] max-h-[50vh]",
       },
     ],
@@ -82,15 +82,15 @@ export const entries: LedgerEntry[] = [
     note: "Top U.S.-exporting linen company. Learned the business end to end, from how an order becomes fabric to how it becomes payment. Taught 100+ employees an AI fundamentals and agentic AI class, and attended Alibaba's AI Business Architecture program.",
     mediaPlaceholders: [
       {
-        label: "Photo 1 — insert here",
+        label: "Photo 1 · insert here",
         kind: "photo",
-        caption: "Caption coming soon — what this photo shows.",
+        caption: "Caption coming soon. What this photo shows.",
         sizeClass: "aspect-[3/4] max-h-[50vh]",
       },
       {
-        label: "Video 1 — insert here",
+        label: "Video 1 · insert here",
         kind: "video",
-        caption: "Caption coming soon — what this video shows.",
+        caption: "Caption coming soon. What this video shows.",
         sizeClass: "aspect-[16/9] max-h-[50vh]",
       },
     ],
@@ -104,15 +104,15 @@ export const entries: LedgerEntry[] = [
     link: "https://www.tiktok.com/@12pell",
     mediaPlaceholders: [
       {
-        label: "Photo 1 — insert here",
+        label: "Photo 1 · insert here",
         kind: "photo",
-        caption: "Caption coming soon — what this photo shows.",
+        caption: "Caption coming soon. What this photo shows.",
         sizeClass: "aspect-[16/9] max-h-[50vh]",
       },
       {
-        label: "Photo 2 — insert here",
+        label: "Photo 2 · insert here",
         kind: "photo",
-        caption: "Caption coming soon — what this photo shows.",
+        caption: "Caption coming soon. What this photo shows.",
         sizeClass: "aspect-[4/5] max-h-[50vh]",
       },
     ],
@@ -126,15 +126,15 @@ export const entries: LedgerEntry[] = [
     link: "https://whop.com/swipesignals",
     mediaPlaceholders: [
       {
-        label: "Photo 1 — insert here",
+        label: "Photo 1 · insert here",
         kind: "photo",
-        caption: "Caption coming soon — what this photo shows.",
+        caption: "Caption coming soon. What this photo shows.",
         sizeClass: "aspect-[4/3] max-h-[50vh]",
       },
       {
-        label: "Photo 2 — insert here",
+        label: "Photo 2 · insert here",
         kind: "photo",
-        caption: "Caption coming soon — what this photo shows.",
+        caption: "Caption coming soon. What this photo shows.",
         sizeClass: "aspect-[3/4] max-h-[50vh]",
       },
     ],
@@ -147,15 +147,15 @@ export const entries: LedgerEntry[] = [
     note: "Founded my high school's DECA chapter after being underwhelmed by the school's business offerings. 30% of the class signed up in the first week; sent 3 people to ICDC in year one.",
     mediaPlaceholders: [
       {
-        label: "Photo 1 — insert here",
+        label: "Photo 1 · insert here",
         kind: "photo",
-        caption: "Caption coming soon — what this photo shows.",
+        caption: "Caption coming soon. What this photo shows.",
         sizeClass: "aspect-[16/10] max-h-[50vh]",
       },
       {
-        label: "Video 1 — insert here",
+        label: "Video 1 · insert here",
         kind: "video",
-        caption: "Caption coming soon — what this video shows.",
+        caption: "Caption coming soon. What this video shows.",
         sizeClass: "aspect-[4/3] max-h-[50vh]",
       },
     ],
@@ -169,15 +169,15 @@ export const entries: LedgerEntry[] = [
     note: "Started reselling Supreme and sneakers as a 5th grader. Grew it into Stride Retail LLC, expanding into Amazon FBA, wholesale contacts, and ticket reselling. $280K peak year revenue.",
     mediaPlaceholders: [
       {
-        label: "Photo 1 — insert here",
+        label: "Photo 1 · insert here",
         kind: "photo",
-        caption: "Caption coming soon — what this photo shows.",
+        caption: "Caption coming soon. What this photo shows.",
         sizeClass: "aspect-[1/1] max-h-[50vh]",
       },
       {
-        label: "Photo 2 — insert here",
+        label: "Photo 2 · insert here",
         kind: "photo",
-        caption: "Caption coming soon — what this photo shows.",
+        caption: "Caption coming soon. What this photo shows.",
         sizeClass: "aspect-[16/10] max-h-[50vh]",
       },
     ],

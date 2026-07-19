@@ -14,17 +14,14 @@ function MediaPlaceholder({
   const { openStory } = useStoryPanel();
   const imgSrc = slot.kind === "video" ? slot.poster : slot.src;
   const labelText =
-    slot.src && slot.kind === "video" ? "Video — Instagram reel" : slot.label;
+    slot.src && slot.kind === "video" ? "Video · Instagram reel" : slot.label;
   return (
     <div>
       <button
         type="button"
         onClick={() =>
           openStory({
-            title: entry.title,
-            year: entry.year,
-            storyText: entry.note,
-            specialThanks: entry.specialThanks,
+            entryTitle: entry.title,
             media: slot,
           })
         }

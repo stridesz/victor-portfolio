@@ -12,10 +12,7 @@ import type { MediaSlot } from "@/data/entries";
 
 type StoryPanelState = {
   open: boolean;
-  title: string;
-  year: string;
-  storyText: string;
-  specialThanks?: string;
+  entryTitle: string;
   media?: MediaSlot;
 };
 
@@ -35,9 +32,7 @@ export function useStoryPanel() {
 
 const CLOSED: StoryPanelState = {
   open: false,
-  title: "",
-  year: "",
-  storyText: "",
+  entryTitle: "",
 };
 
 export function StoryPanelProvider({ children }: { children: ReactNode }) {
@@ -59,6 +54,16 @@ export function StoryPanelProvider({ children }: { children: ReactNode }) {
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, [panel.open, closeStory]);
+
+  // Lock page scroll while the lightbox is open
+  useEffect(() => {
+    if (!panel.open) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [panel.open]);
 
   return (
     <StoryPanelContext.Provider value={{ panel, openStory, closeStory }}>

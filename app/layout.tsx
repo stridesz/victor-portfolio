@@ -9,8 +9,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Victor Qi — The Ledger",
-  description: "A chronological ledger of work, 2024 — 2026.",
+  title: "Victor Qi · The Ledger",
+  description: "A chronological ledger of work, 2024–2026.",
 };
 
 export default function RootLayout({
