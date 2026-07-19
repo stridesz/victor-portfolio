@@ -61,16 +61,20 @@ export const entries: LedgerEntry[] = [
     link: "https://jointablr.com",
     mediaPlaceholders: [
       {
-        label: "Photo 1 · insert here",
+        label: "Tablr's first build",
         kind: "photo",
-        caption: "Caption coming soon. What this photo shows.",
-        sizeClass: "aspect-[16/10] max-h-[50vh]",
+        caption:
+          "Finishing the first version of Tablr late at night in my freshman dorm in New York City.",
+        sizeClass: "aspect-[1097/673] max-h-[50vh]",
+        src: "/media/tablr/tablr-dorm-build.png",
       },
       {
-        label: "Photo 2 · insert here",
+        label: "Testing Tablr in Washington Square Park",
         kind: "photo",
-        caption: "Caption coming soon. What this photo shows.",
-        sizeClass: "aspect-[1/1] max-h-[50vh]",
+        caption:
+          "Andrew and I testing Tablr in Washington Square Park by asking strangers if they would grab a slice of pizza with us.",
+        sizeClass: "aspect-[647/861] max-h-[50vh]",
+        src: "/media/tablr/tablr-washington-square-testing.png",
       },
     ],
   },
@@ -118,28 +122,6 @@ export const entries: LedgerEntry[] = [
     ],
   },
   {
-    id: "swipe-signals",
-    title: "Swipe Signals",
-    role: "Co-founder",
-    year: "2024",
-    note: "Bot reselling group turned ticket reselling group. First 100 memberships sold out in 3 minutes. 150+ five-star reviews. $35K peak MRR.",
-    link: "https://whop.com/swipesignals",
-    mediaPlaceholders: [
-      {
-        label: "Photo 1 · insert here",
-        kind: "photo",
-        caption: "Caption coming soon. What this photo shows.",
-        sizeClass: "aspect-[4/3] max-h-[50vh]",
-      },
-      {
-        label: "Photo 2 · insert here",
-        kind: "photo",
-        caption: "Caption coming soon. What this photo shows.",
-        sizeClass: "aspect-[3/4] max-h-[50vh]",
-      },
-    ],
-  },
-  {
     id: "deca",
     title: "DECA",
     role: "Founder & President",
@@ -162,10 +144,32 @@ export const entries: LedgerEntry[] = [
     specialThanks: "Special thanks to the founding officers and advisors.",
   },
   {
+    id: "swipe-signals",
+    title: "Swipe Signals",
+    role: "Co-founder",
+    year: "2021–2024",
+    note: "Bot reselling group turned ticket reselling group. First 100 memberships sold out in 3 minutes. 150+ five-star reviews. $35K peak MRR.",
+    link: "https://whop.com/swipesignals",
+    mediaPlaceholders: [
+      {
+        label: "Photo 1 · insert here",
+        kind: "photo",
+        caption: "Caption coming soon. What this photo shows.",
+        sizeClass: "aspect-[4/3] max-h-[50vh]",
+      },
+      {
+        label: "Photo 2 · insert here",
+        kind: "photo",
+        caption: "Caption coming soon. What this photo shows.",
+        sizeClass: "aspect-[3/4] max-h-[50vh]",
+      },
+    ],
+  },
+  {
     id: "stride-retail",
     title: "Stride Retail LLC",
     role: "Founder",
-    year: "",
+    year: "2020–2024",
     note: "Started reselling Supreme and sneakers as a 5th grader. Grew it into Stride Retail LLC, expanding into Amazon FBA, wholesale contacts, and ticket reselling. $280K peak year revenue.",
     mediaPlaceholders: [
       {
