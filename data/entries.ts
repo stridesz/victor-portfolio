@@ -137,16 +137,20 @@ export const entries: LedgerEntry[] = [
     note: "Founded my high school's DECA chapter after being underwhelmed by the school's business offerings. 30% of the class signed up in the first week; sent 3 people to ICDC in year one.",
     mediaPlaceholders: [
       {
-        label: "Photo 1 · insert here",
+        label: "DECA progression of engagement",
         kind: "photo",
-        caption: "Caption coming soon. What this photo shows.",
-        sizeClass: "aspect-[16/10] max-h-[50vh]",
+        caption:
+          "DECA's Progression of Engagement guide, the original roadmap we used to build Ravenscroft's chapter from scratch.",
+        src: "/media/deca/progression-of-engagement.jpg",
+        sizeClass: "aspect-[2880/2160] max-h-[50vh]",
       },
       {
-        label: "Video 1 · insert here",
-        kind: "video",
-        caption: "Caption coming soon. What this video shows.",
-        sizeClass: "aspect-[4/3] max-h-[50vh]",
+        label: "Ravenscroft's first DECA conference",
+        kind: "photo",
+        caption:
+          "Walking into Ravenscroft School's first DECA conference as a chapter.",
+        src: "/media/deca/first-conference.jpg",
+        sizeClass: "aspect-[2160/2880] max-h-[50vh]",
       },
     ],
     specialThanks: "Special thanks to the founding officers and advisors.",
