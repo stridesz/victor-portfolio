@@ -83,19 +83,23 @@ export const entries: LedgerEntry[] = [
     title: "Huaren Linen",
     role: "Intern · Shenzhen",
     year: "Summer 2026",
-    note: "Top U.S.-exporting linen company. Learned the business end to end, from how an order becomes fabric to how it becomes payment. Taught 100+ employees an AI fundamentals and agentic AI class, and attended Alibaba's AI Business Architecture program.",
+    note: "Interned in Shenzhen at a leading U.S. linen exporter. Followed the order-to-cash process from fabric production through payment, taught AI fundamentals and agentic AI to 100+ employees, and studied AI business architecture at Alibaba.",
     mediaPlaceholders: [
       {
-        label: "Photo 1 · insert here",
+        label: "Alibaba AI Business Architecture class",
         kind: "photo",
-        caption: "Caption coming soon. What this photo shows.",
-        sizeClass: "aspect-[3/4] max-h-[50vh]",
+        caption:
+          "At Alibaba's Shenzhen headquarters for an AI Business Architecture class, learning how large companies are turning AI into an operating layer for their businesses.",
+        src: "/media/huaren-linen/alibaba-shenzhen.jpeg",
+        sizeClass: "aspect-[1280/960] max-h-[50vh]",
       },
       {
-        label: "Video 1 · insert here",
-        kind: "video",
-        caption: "Caption coming soon. What this video shows.",
-        sizeClass: "aspect-[16/9] max-h-[50vh]",
+        label: "Huaren Linen at Texworld NYC",
+        kind: "photo",
+        caption:
+          "Huaren Linen fabric samples on display while I helped run the booth at Texworld NYC in the Javits Center during winter break of my freshman year.",
+        src: "/media/huaren-linen/texworld-fabric-samples.jpeg",
+        sizeClass: "aspect-[800/1067] max-h-[50vh]",
       },
     ],
   },
