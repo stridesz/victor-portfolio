@@ -40,10 +40,11 @@ export type AboutPhoto = {
 
 export const aboutPhotos: AboutPhoto[] = [
   {
-    src: "/media/about/los-angeles-skyline.jpg",
-    alt: "Los Angeles skyline beneath a wide blue sky",
-    caption: "Los Angeles from above.",
-    sizeClass: "aspect-[3/4]",
+    src: "/media/about/two-goldens-at-home.jpg",
+    alt: "Two golden retrievers together at home",
+    caption: "Two goldens at home.",
+    sizeClass: "aspect-[4/3]",
+    icon: "🐕",
   },
   {
     src: "/media/about/brooklyn-bridge-park-basketball.jpg",
@@ -64,6 +65,7 @@ export const aboutPhotos: AboutPhoto[] = [
     alt: "Red temple architecture beneath a blue sky in Japan",
     caption: "Looking up in Japan.",
     sizeClass: "aspect-[3/4]",
+    icon: "🏯",
   },
   {
     src: "/media/about/wiggles-rose.jpg",
@@ -73,11 +75,11 @@ export const aboutPhotos: AboutPhoto[] = [
     icon: "🌹",
   },
   {
-    src: "/media/about/two-goldens-at-home.jpg",
-    alt: "Two golden retrievers together at home",
-    caption: "Two goldens at home.",
-    sizeClass: "aspect-[4/3]",
-    icon: "🐕",
+    src: "/media/about/los-angeles-skyline-bright.jpg",
+    alt: "Los Angeles skyline beneath a wide blue sky",
+    caption: "Los Angeles from above.",
+    sizeClass: "aspect-[3/4]",
+    icon: "🌤️",
   },
 ];
 
