@@ -83,7 +83,7 @@ export const entries: LedgerEntry[] = [
     title: "Huaren Linen",
     role: "Intern · Shenzhen",
     year: "Summer 2026",
-    note: "Interned in Shenzhen at a leading U.S. linen exporter. Followed the order-to-cash process from fabric production through payment, taught AI fundamentals and agentic AI to 100+ employees, and studied AI business architecture at Alibaba.",
+    note: "Shadowed each step of Huaren Linen's order-to-cash process, from fabric production through payment, to identify where AI could make the operation faster, clearer, and more reliable.",
     mediaPlaceholders: [
       {
         label: "Alibaba AI Business Architecture class",
