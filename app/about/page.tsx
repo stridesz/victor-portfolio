@@ -97,18 +97,18 @@ export default function AboutPage() {
           <h2 className="text-[12px] uppercase tracking-wide text-meta">
             Current scent
           </h2>
-          <div className="mt-4 flex max-w-xl items-center gap-4">
+          <div className="mt-4 flex max-w-xl items-center gap-4 md:gap-5">
             {scent.photo ? (
-              <span className="relative block h-24 w-24 shrink-0 overflow-hidden bg-placeholder">
+              <span className="relative block h-28 w-28 shrink-0 overflow-hidden md:h-36 md:w-36">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={scent.photo}
                   alt={scent.name}
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-contain"
                 />
               </span>
             ) : (
-              <span className="block h-24 w-24 shrink-0 bg-placeholder" />
+              <span className="block h-28 w-28 shrink-0 bg-placeholder md:h-36 md:w-36" />
             )}
             <div className="text-[13px] leading-relaxed md:text-sm">
               {scent.name ? (
