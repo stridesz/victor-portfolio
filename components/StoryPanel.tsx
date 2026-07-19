@@ -119,7 +119,7 @@ export default function StoryPanel() {
                   rel="noopener noreferrer"
                   className="hover:underline underline-offset-2"
                 >
-                  ↳ Watch on Instagram
+                  ↳ {media.externalLabel ?? "Open original"}
                 </a>
               </p>
             ) : null}

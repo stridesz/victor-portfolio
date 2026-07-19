@@ -10,6 +10,8 @@ export type MediaSlot = {
   poster?: string;
   /** External link (e.g. Instagram reel) shown in the media viewer */
   externalUrl?: string;
+  /** Displayed label for the external media source */
+  externalLabel?: string;
 };
 
 export type LedgerEntry = {
@@ -49,6 +51,7 @@ export const entries: LedgerEntry[] = [
         src: "/media/fractional-few/tff-reel.mp4",
         poster: "/media/fractional-few/tff-reel-poster.jpg",
         externalUrl: "https://www.instagram.com/reel/Da-96SERTmp/",
+        externalLabel: "Watch on Instagram",
       },
     ],
   },
@@ -165,16 +168,22 @@ export const entries: LedgerEntry[] = [
     link: "https://whop.com/swipesignals",
     mediaPlaceholders: [
       {
-        label: "Photo 1 · insert here",
+        label: "Finding out I was 13",
         kind: "photo",
-        caption: "Caption coming soon. What this photo shows.",
-        sizeClass: "aspect-[4/3] max-h-[50vh]",
+        caption:
+          "My future Swipe Signals co-founder finding out I was 13, after already offering me co-ownership.",
+        sizeClass: "aspect-[858/1024] max-h-[50vh]",
+        src: "/media/swipe-signals/cofounder-finds-out-age.jpeg",
+        externalUrl: "https://x.com/stridesoles/status/1407861544277348356/photo/1",
+        externalLabel: "View on X",
       },
       {
-        label: "Photo 2 · insert here",
+        label: "Swipe Signals early access launch",
         kind: "photo",
-        caption: "Caption coming soon. What this photo shows.",
-        sizeClass: "aspect-[3/4] max-h-[50vh]",
+        caption:
+          "The early-access thread that got Swipe Signals moving, led by 777 reposts and 954 likes on the first post.",
+        sizeClass: "aspect-[605/596] max-h-[50vh]",
+        src: "/media/swipe-signals/early-access-launch.png",
       },
     ],
   },
