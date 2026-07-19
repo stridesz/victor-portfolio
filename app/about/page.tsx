@@ -99,7 +99,7 @@ export default function AboutPage() {
           </h2>
           <div className="mt-4 flex max-w-xl items-center gap-4 md:gap-5">
             {scent.photo ? (
-              <span className="relative block h-28 w-28 shrink-0 overflow-hidden md:h-36 md:w-36">
+              <span className="relative block h-36 w-36 shrink-0 overflow-hidden md:h-56 md:w-56">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={scent.photo}
