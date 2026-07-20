@@ -112,7 +112,7 @@ export const entries: LedgerEntry[] = [
   {
     id: "12-pell",
     title: "12 Pell",
-    role: "Intern",
+    role: "Intern · New York City",
     year: "2025",
     note: "Event management and team coordination for a barbershop and community space with 2M+ TikTok followers. You might know them from the Ginger Fringe Incident.",
     link: "https://www.tiktok.com/@12pell",
@@ -138,7 +138,7 @@ export const entries: LedgerEntry[] = [
   {
     id: "deca",
     title: "DECA",
-    role: "Founder & President",
+    role: "Founder & President · Raleigh",
     year: "2024",
     note: "Founded my high school's DECA chapter after being underwhelmed by the school's business offerings. 30% of the class signed up in the first week; sent 3 people to ICDC in year one.",
     link: "https://www.ravenscroft.org/our-community/news/story-page/~board/news/post/ravens-accelerate-future-paths-with-shuford-and-deca",
