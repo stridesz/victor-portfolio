@@ -13,10 +13,17 @@ export default function StoryPanel() {
   const lastActiveRef = useRef<HTMLElement | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Pause the reel when the lightbox closes (it stays mounted off-screen)
+  // Start video playback when opened and pause it when the lightbox closes.
   useEffect(() => {
-    if (!panel.open) videoRef.current?.pause();
-  }, [panel.open]);
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (panel.open && panel.media?.kind === "video") {
+      void video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  }, [panel.open, panel.media]);
 
   // Focus management + simple focus trap
   useEffect(() => {
@@ -86,6 +93,7 @@ export default function StoryPanel() {
                 src={media.src}
                 poster={media.poster}
                 controls
+                autoPlay
                 playsInline
                 className="max-h-[80vh] max-w-[85vw] bg-black"
               />
