@@ -1,0 +1,22 @@
+# Victor Qi · The Ledger
+
+Official website: https://www.victorqi.me
+
+Victor Qi is a Northeastern University student whose work spans AI, entrepreneurship, operations, supply chain management, and e-commerce. This site is a running ledger of things he has built and operated since fifth grade.
+
+## Pages
+
+- `/`: The Ledger, with seven chronological project and operating entries.
+- `/about`: Background, education, photos, music, and current interests.
+
+## Ledger entries
+
+1. The Fractional Few: Co-founded a paid membership community focused on reverse-split stocks and built SEC-filing tracking and analysis automation.
+2. Tablr: Co-founded a product that matches college students around shared interests, majors, and compatibility, then gives them a reason to meet.
+3. Huaren Linen: Interned in Shenzhen, studied the order-to-cash process, and taught 100+ employees practical AI use, core fundamentals, and introductory agentic AI concepts.
+4. 12 Pell: Supported event management and team coordination for a barbershop and community space.
+5. DECA: Founded and led a high-school DECA chapter.
+6. Swipe Signals: Co-founded a bot-reselling group that expanded into ticket reselling.
+7. Stride Retail LLC: Founded a resale business in fifth grade and expanded it into Amazon FBA, wholesale, and ticket reselling.
+
+LinkedIn: https://www.linkedin.com/in/victor-qi

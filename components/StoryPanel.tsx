@@ -85,7 +85,6 @@ export default function StoryPanel() {
                 ref={videoRef}
                 src={media.src}
                 poster={media.poster}
-                autoPlay
                 controls
                 playsInline
                 className="max-h-[80vh] max-w-[85vw] bg-black"

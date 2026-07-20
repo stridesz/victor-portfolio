@@ -14,6 +14,7 @@ function MediaPlaceholder({
   const { openStory } = useStoryPanel();
   const imgSrc = slot.kind === "video" ? slot.poster : slot.src;
   const labelText = slot.previewLabel ?? slot.label;
+  const isVideoThumbnail = slot.kind === "video" && Boolean(imgSrc);
   return (
     <div>
       <button
@@ -24,8 +25,12 @@ function MediaPlaceholder({
             media: slot,
           })
         }
-        className={`group block w-full cursor-pointer bg-placeholder ${slot.sizeClass} relative overflow-hidden text-left transition-transform transition-shadow duration-200 ease-out hover:scale-[1.02] hover:shadow-lg hover:shadow-black/10`}
-        aria-label={`View ${slot.label} for ${entry.title}`}
+        className={`group block w-full cursor-pointer bg-placeholder ${slot.sizeClass} relative overflow-hidden text-left ${
+          isVideoThumbnail
+            ? ""
+            : "transition-transform transition-shadow duration-200 ease-out hover:scale-[1.02] hover:shadow-lg hover:shadow-black/10"
+        }`}
+        aria-label={`${slot.kind === "video" ? "Play" : "View"} ${slot.label} for ${entry.title}`}
       >
         {imgSrc ? (
           <Image
@@ -40,6 +45,18 @@ function MediaPlaceholder({
             {labelText}
           </span>
         )}
+        {isVideoThumbnail ? (
+          <span className="pointer-events-none absolute left-1/2 top-1/2 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-black/10 bg-white transition-transform duration-200 ease-out group-hover:scale-105 group-focus:scale-105">
+            <svg
+              aria-hidden="true"
+              className="pointer-events-none ml-0.5 h-3.5 w-3.5 text-black"
+              viewBox="0 0 14 14"
+              fill="currentColor"
+            >
+              <path d="M3.5 2.2v9.6L11 7 3.5 2.2Z" />
+            </svg>
+          </span>
+        ) : null}
       </button>
       {imgSrc ? (
         <p className="mt-2 text-[12px] uppercase tracking-wide text-meta">

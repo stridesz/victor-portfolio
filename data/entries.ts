@@ -89,7 +89,7 @@ export const entries: LedgerEntry[] = [
     title: "Huaren Linen",
     role: "Intern · Shenzhen",
     year: "Summer 2026",
-    note: "Shadowed each step of Huaren Linen's order-to-cash process, from fabric production through payment, to identify where AI could make the operation faster, clearer, and more reliable.",
+    note: "Shadowed each step of Huaren Linen's order-to-cash process, from fabric production through payment, to identify where AI could make the operation faster, clearer, and more reliable. Led an AI class for 100+ employees covering practical use, core fundamentals, and introductory agentic AI concepts.",
     mediaPlaceholders: [
       {
         label: "Alibaba AI Business Architecture class",
@@ -200,7 +200,7 @@ export const entries: LedgerEntry[] = [
         label: "Supreme FW18 Box Logo Crewneck",
         previewLabel: "What started it all",
         kind: "video",
-        caption: "Supreme FW18 Box Logo Crewneck. Sold out in 3.7 seconds.",
+        caption: "Supreme FW18 Box Logo Crewneck. Sold out in 3.7 seconds. I was in fifth grade. The $1,000 I earned from it made everything that followed possible.",
         sizeClass: "aspect-[2160/2880] max-h-[50vh]",
         src: "/media/stride-retail/supreme-box-logo.mp4",
         poster: "/media/stride-retail/supreme-box-logo-poster.jpg",

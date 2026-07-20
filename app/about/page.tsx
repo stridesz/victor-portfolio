@@ -8,7 +8,33 @@ import { introSections, education, scent } from "@/data/about";
 export const metadata: Metadata = {
   title: "About · Victor Qi",
   description:
-    "Where Victor Qi is from, what he does now, and what he is looking for.",
+    "Victor Qi. A running ledger of the things I've built and operated since fifth grade.",
+  alternates: {
+    canonical: "/about",
+  },
+  openGraph: {
+    title: "Victor Qi · The Ledger",
+    description:
+      "Victor Qi. A running ledger of the things I've built and operated since fifth grade.",
+    url: "/about",
+    siteName: "Victor Qi · The Ledger",
+    type: "website",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Victor Qi.",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Victor Qi · The Ledger",
+    description:
+      "Victor Qi. A running ledger of the things I've built and operated since fifth grade.",
+    images: ["/opengraph-image"],
+  },
 };
 
 export default function AboutPage() {
