@@ -7,7 +7,8 @@
     "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint .",
-    "verify:release": "node scripts/verify-release-blockers.mjs"
+    "verify:release": "node scripts/verify-release-blockers.mjs",
+    "verify:smooth-scroll": "node scripts/verify-smooth-scroll-anchor.mjs"
   },
   "dependencies": {
     "next": "^16.2.10",

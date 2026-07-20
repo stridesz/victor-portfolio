@@ -30,9 +30,15 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     const onClick = (e: MouseEvent) => {
       const anchor = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[href^="#"]');
       if (!anchor) return;
-      const id = anchor.getAttribute("href");
-      if (!id || id === "#") return;
-      const el = document.querySelector(id);
+      const href = anchor.getAttribute("href");
+      if (!href || href === "#") return;
+      let id: string;
+      try {
+        id = decodeURIComponent(href.slice(1));
+      } catch {
+        return;
+      }
+      const el = document.getElementById(id);
       if (!el) return;
       e.preventDefault();
       lenis.scrollTo(el as HTMLElement, { offset: -32 });
