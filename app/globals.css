@@ -60,6 +60,11 @@ input[type="range"].seek:disabled {
   cursor: not-allowed;
 }
 
+input[type="range"].seek:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--color-ink) 65%, transparent);
+  outline-offset: 4px;
+}
+
 input[type="range"].seek::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;

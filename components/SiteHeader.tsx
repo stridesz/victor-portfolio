@@ -9,7 +9,7 @@ export default function SiteHeader() {
   const isAbout = pathname === "/about";
 
   return (
-    <header className="flex items-baseline justify-between pt-10 md:pt-14">
+    <header className="flex flex-col items-start gap-5 pt-10 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4 md:pt-14">
       <div className="flex items-baseline gap-4">
         {isHome ? (
           <h1 className="text-[32px] font-medium leading-none md:text-[40px]">
@@ -25,7 +25,7 @@ export default function SiteHeader() {
         )}
         <span className="text-[13px] text-meta md:text-sm">2026</span>
       </div>
-      <nav className="flex gap-6 text-[13px] md:text-sm">
+      <nav className="flex gap-5 text-[13px] sm:gap-6 md:text-sm">
         <Link
           href="/about"
           className={`transition-colors hover:text-meta ${

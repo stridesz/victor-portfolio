@@ -11,18 +11,32 @@ const ADVANCE_MS = 5500;
 export default function AboutPhotos() {
   const { openStory } = useStoryPanel();
   const [photoIndex, setPhotoIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
+  const [autoPlayEnabled, setAutoPlayEnabled] = useState(true);
+  const [interactionPaused, setInteractionPaused] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
 
   const photos = aboutPhotos;
 
-  // Auto-advance; paused on hover/focus
   useEffect(() => {
-    if (paused || photos.length < 2) return;
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const syncPreference = () => {
+      setReducedMotion(media.matches);
+      if (media.matches) setAutoPlayEnabled(false);
+    };
+
+    syncPreference();
+    media.addEventListener("change", syncPreference);
+    return () => media.removeEventListener("change", syncPreference);
+  }, []);
+
+  // Auto-advance when enabled; temporarily pause while the gallery is being used.
+  useEffect(() => {
+    if (!autoPlayEnabled || interactionPaused || photos.length < 2) return;
     const id = window.setInterval(() => {
       setPhotoIndex((i) => (i + 1) % photos.length);
     }, ADVANCE_MS);
     return () => window.clearInterval(id);
-  }, [paused, photos.length]);
+  }, [autoPlayEnabled, interactionPaused, photos.length]);
 
   if (photos.length === 0) {
     return (
@@ -48,10 +62,14 @@ export default function AboutPhotos() {
 
   return (
     <div
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocus={() => setPaused(true)}
-      onBlur={() => setPaused(false)}
+      onMouseEnter={() => setInteractionPaused(true)}
+      onMouseLeave={() => setInteractionPaused(false)}
+      onFocus={() => setInteractionPaused(true)}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) {
+          setInteractionPaused(false);
+        }
+      }}
     >
       <div className="relative aspect-[4/3] max-h-[55vh] w-full overflow-hidden bg-placeholder">
         <button
@@ -64,7 +82,9 @@ export default function AboutPhotos() {
             <span
               key={photo.src}
               aria-hidden={i !== photoIndex}
-              className={`absolute inset-0 transition-opacity duration-700 ease-out ${
+              className={`absolute inset-0 ${
+                reducedMotion ? "" : "transition-opacity duration-700 ease-out"
+              } ${
                 i === photoIndex ? "opacity-100" : "opacity-0"
               }`}
             >
@@ -109,6 +129,24 @@ export default function AboutPhotos() {
               )}
             </button>
           ))}
+          <span aria-hidden className="h-4 w-px bg-ink/15" />
+          <button
+            type="button"
+            onClick={() => setAutoPlayEnabled((enabled) => !enabled)}
+            aria-label={autoPlayEnabled ? "Pause photo carousel" : "Play photo carousel"}
+            className="flex size-4 items-center justify-center text-ink transition-colors hover:text-meta"
+          >
+            {autoPlayEnabled ? (
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor" aria-hidden>
+                <rect x="2" y="1" width="2" height="8" />
+                <rect x="6" y="1" width="2" height="8" />
+              </svg>
+            ) : (
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor" aria-hidden>
+                <path d="M2.5 1.25v7.5L8.5 5z" />
+              </svg>
+            )}
+          </button>
         </div>
       </div>
     </div>

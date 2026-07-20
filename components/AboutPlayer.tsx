@@ -98,8 +98,10 @@ export default function AboutPlayer() {
       audio.pause();
       setPlaying(false);
     } else {
-      void audio.play();
-      setPlaying(true);
+      void audio.play().then(
+        () => setPlaying(true),
+        () => setPlaying(false),
+      );
     }
   };
 
@@ -144,9 +146,9 @@ export default function AboutPlayer() {
   const isVisuallyMuted = muted || volume === 0;
 
   return (
-    <div className="flex items-center gap-4 md:gap-5">
+    <div className="flex flex-col items-stretch gap-4 md:flex-row md:items-center md:gap-5">
       {/* Album art (neutral placeholder with a music note until supplied) */}
-      <div className="flex w-36 shrink-0 justify-center md:w-72">
+      <div className="flex w-full shrink-0 justify-center md:w-72">
         <div className="relative aspect-[835/729] w-36 overflow-hidden bg-placeholder md:w-64">
           {track.albumArt ? (
             <Image
