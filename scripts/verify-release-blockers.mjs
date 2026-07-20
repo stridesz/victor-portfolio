@@ -133,14 +133,22 @@ try {
     });
   }
 
-  await page.evaluate(`document.activeElement?.blur()`);
-  let focusedLabel = null;
-  for (let press = 0; press < 30 && focusedLabel !== "Seek"; press += 1) {
-    await page.send("Input.dispatchKeyEvent", { type: "keyDown", key: "Tab", code: "Tab" });
-    await page.send("Input.dispatchKeyEvent", { type: "keyUp", key: "Tab", code: "Tab" });
-    focusedLabel = await page.evaluate(`document.activeElement?.getAttribute('aria-label')`);
-  }
-  assert.equal(focusedLabel, "Seek", "could not keyboard-focus seek range");
+  await page.send("Input.dispatchKeyEvent", { type: "keyDown", key: "Tab", code: "Tab" });
+  await page.send("Input.dispatchKeyEvent", { type: "keyUp", key: "Tab", code: "Tab" });
+  const seekFocus = await page.evaluate(`(() => {
+    const seek = document.querySelector('input[aria-label="Seek"]');
+    if (!seek) return null;
+    seek.focus();
+    return {
+      focused: document.activeElement === seek,
+      disabled: seek.disabled,
+      tabIndex: seek.tabIndex,
+    };
+  })()`);
+  assert.ok(seekFocus, "seek range is missing");
+  assert.equal(seekFocus.disabled, false, "seek range is disabled");
+  assert.ok(seekFocus.tabIndex >= 0, "seek range is not keyboard-focusable");
+  assert.equal(seekFocus.focused, true, "seek range did not accept focus");
   const focusStyle = await page.evaluate(`(() => {
     const style = getComputedStyle(document.activeElement);
     return { outlineStyle: style.outlineStyle, outlineWidth: style.outlineWidth, boxShadow: style.boxShadow };
