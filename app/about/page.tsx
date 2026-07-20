@@ -86,6 +86,10 @@ export default function AboutPage() {
               <dt className="text-meta">Concentrations</dt>
               <dd>{education.concentrations}</dd>
             </div>
+            <div className="flex gap-2">
+              <dt className="text-meta">GPA</dt>
+              <dd>{education.gpa}</dd>
+            </div>
           </dl>
         </section>
 

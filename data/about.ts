@@ -26,6 +26,7 @@ export const education = {
   school: "Northeastern University '29",
   major: "Business Administration",
   concentrations: "Management & Supply Chain Management",
+  gpa: "3.97/4.00",
 };
 
 export type AboutPhoto = {
