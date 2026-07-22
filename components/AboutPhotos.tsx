@@ -49,15 +49,18 @@ export default function AboutPhotos() {
   }
 
   const openPhoto = () => {
-    const photo = photos[photoIndex];
-    const slot: MediaSlot = {
+    const slots: MediaSlot[] = photos.map((photo) => ({
       label: photo.alt,
       kind: "photo",
       caption: photo.caption,
       sizeClass: photo.sizeClass,
       src: photo.src,
-    };
-    openStory({ entryTitle: "About · Photos", media: slot });
+    }));
+    openStory({
+      entryTitle: "About · Photos",
+      media: slots,
+      index: photoIndex,
+    });
   };
 
   return (

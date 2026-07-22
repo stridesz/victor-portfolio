@@ -5,11 +5,21 @@ import SmoothScroll from "@/components/SmoothScroll";
 
 export default function Template({ children }: { children: ReactNode }) {
   const [shown, setShown] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
 
   useEffect(() => {
-    const frame = requestAnimationFrame(() => setShown(true));
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const frame = requestAnimationFrame(() => {
+      if (reduced) setReducedMotion(true);
+      else setShown(true);
+    });
     return () => cancelAnimationFrame(frame);
   }, []);
+
+  // Skip the enter transition entirely for visitors who prefer reduced motion.
+  if (reducedMotion) {
+    return <SmoothScroll>{children}</SmoothScroll>;
+  }
 
   return (
     <SmoothScroll>

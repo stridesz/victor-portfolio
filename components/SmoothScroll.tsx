@@ -17,10 +17,13 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       return;
     }
 
+    // Lerp mode eases toward the real scroll position every frame, so the page
+    // tracks the wheel closely instead of gliding over a fixed duration. Higher
+    // `lerp` = snappier/more connected, lower = floatier. This is the dial to taste-tune.
     const lenis = new Lenis({
-      duration: 1.1,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      lerp: 0.12,
       smoothWheel: true,
+      wheelMultiplier: 1,
     });
     lenisRef.current = lenis;
 
@@ -64,7 +67,9 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
             trigger: block,
             start: "top 95%",
             end: "top 40%",
-            scrub: true,
+            // A short catch-up (vs. scrub: true) lets the reveal glide instead of
+            // snapping frame-for-frame to the scrollbar, which reads as smoother.
+            scrub: 0.6,
           },
         }
       )

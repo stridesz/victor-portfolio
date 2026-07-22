@@ -36,8 +36,8 @@ export default function Page() {
 
       {/* Entries */}
       <main className="mt-20 space-y-20 pb-32 md:mt-28 md:space-y-28">
-        {entries.map((entry) => (
-          <EntrySection key={entry.id} entry={entry} />
+        {entries.map((entry, i) => (
+          <EntrySection key={entry.id} entry={entry} priority={i === 0} />
         ))}
       </main>
 

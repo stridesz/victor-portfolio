@@ -7,9 +7,14 @@ import { useStoryPanel } from "./StoryPanelContext";
 function MediaPlaceholder({
   entry,
   slot,
+  index,
+  priority,
 }: {
   entry: LedgerEntry;
   slot: MediaSlot;
+  index: number;
+  /** Eager-load above-the-fold media so it doesn't gate the Largest Contentful Paint. */
+  priority?: boolean;
 }) {
   const { openStory } = useStoryPanel();
   const imgSrc = slot.kind === "video" ? slot.poster : slot.src;
@@ -22,7 +27,8 @@ function MediaPlaceholder({
         onClick={() =>
           openStory({
             entryTitle: entry.title,
-            media: slot,
+            media: entry.mediaPlaceholders,
+            index,
           })
         }
         className={`group block w-full cursor-pointer bg-placeholder ${slot.sizeClass} relative overflow-hidden text-left ${
@@ -37,6 +43,7 @@ function MediaPlaceholder({
             src={imgSrc}
             alt={slot.label}
             fill
+            priority={priority}
             className="object-cover"
             sizes="(min-width: 768px) 45vw, 100vw"
           />
@@ -87,7 +94,14 @@ function formatLinkDisplay(link: string): string {
   }
 }
 
-export default function EntrySection({ entry }: { entry: LedgerEntry }) {
+export default function EntrySection({
+  entry,
+  priority,
+}: {
+  entry: LedgerEntry;
+  /** When true, eager-load this entry's media (used for the first, above-the-fold entry). */
+  priority?: boolean;
+}) {
   return (
     <section
       id={entry.id}
@@ -137,7 +151,12 @@ export default function EntrySection({ entry }: { entry: LedgerEntry }) {
                   : "w-full sm:w-[calc(40%-0.5rem)]"
               }
             >
-              <MediaPlaceholder entry={entry} slot={slot} />
+              <MediaPlaceholder
+                entry={entry}
+                slot={slot}
+                index={i}
+                priority={priority && i === 0}
+              />
             </div>
           ))}
         </div>
