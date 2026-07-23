@@ -135,9 +135,9 @@ export default function AboutPage() {
                 <AboutPlayer />
               </div>
             </section>
-            <section aria-label="Scent">
+            <section aria-label="Wearing">
               <h3 className="text-[12px] uppercase tracking-wide text-meta">
-                Scent
+                Wearing
               </h3>
               <div className="mt-5 flex flex-col items-start gap-4">
                 {scent.photo ? (
