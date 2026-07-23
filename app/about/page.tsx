@@ -43,68 +43,75 @@ export default function AboutPage() {
       <SiteHeader />
 
       <main className="mt-16 pb-32 md:mt-24">
-        <h1 className="text-[32px] font-medium leading-none md:text-[40px]">
-          What I&apos;m bout.
-        </h1>
+        {/* Top — intro blocks left, photos right on large screens */}
+        <div className="grid gap-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16">
+          <div>
+            <h1 className="text-[32px] font-medium leading-none md:text-[40px]">
+              What I&apos;m bout.
+            </h1>
 
-        {/* Intro — labeled blocks */}
-        <div className="mt-12 space-y-10 md:mt-16 md:space-y-12">
-          {introSections.map((section) => (
+            {/* Intro — labeled blocks */}
+            <div className="mt-12 space-y-10 md:mt-16 md:space-y-12">
+              {introSections.map((section) => (
+                <section
+                  key={section.label}
+                  aria-label={section.label}
+                  className="border-t border-placeholder pt-6"
+                >
+                  <h2 className="text-[12px] uppercase tracking-wide text-meta">
+                    {section.label}
+                  </h2>
+                  <p className="mt-3 max-w-2xl text-[15px] leading-relaxed">
+                    {section.body}
+                  </p>
+                </section>
+              ))}
+            </div>
+          </div>
+
+          {/* Right rail — photos, then education */}
+          <div>
             <section
-              key={section.label}
-              aria-label={section.label}
-              className="border-t border-placeholder pt-6"
+              aria-label="Photos"
+              className="border-t border-placeholder pt-10 lg:border-t-0 lg:pt-0"
             >
               <h2 className="text-[12px] uppercase tracking-wide text-meta">
-                {section.label}
+                Photos
               </h2>
-              <p className="mt-3 max-w-2xl text-[15px] leading-relaxed">
-                {section.body}
-              </p>
+              <div className="mt-4">
+                <AboutPhotos />
+              </div>
             </section>
-          ))}
-        </div>
 
-        {/* Education — ledger-style metadata rows */}
-        <section
-          aria-label="Education"
-          className="mt-16 border-t border-placeholder pt-10 md:mt-20"
-        >
-          <h2 className="text-[12px] uppercase tracking-wide text-meta">
-            Education
-          </h2>
-          <dl className="mt-4 space-y-1 text-[13px] leading-relaxed md:text-sm">
-            <div className="flex gap-2">
-              <dt className="text-meta">School</dt>
-              <dd>{education.school}</dd>
-            </div>
-            <div className="flex gap-2">
-              <dt className="text-meta">Major</dt>
-              <dd>{education.major}</dd>
-            </div>
-            <div className="flex gap-2">
-              <dt className="text-meta">Concentrations</dt>
-              <dd>{education.concentrations}</dd>
-            </div>
-            <div className="flex gap-2">
-              <dt className="text-meta">GPA</dt>
-              <dd>{education.gpa}</dd>
-            </div>
-          </dl>
-        </section>
-
-        {/* Photos */}
-        <section
-          aria-label="Photos"
-          className="mt-16 border-t border-placeholder pt-10 md:mt-20"
-        >
-          <h2 className="text-[12px] uppercase tracking-wide text-meta">
-            Photos
-          </h2>
-          <div className="mt-4 max-w-3xl">
-            <AboutPhotos />
+            {/* Education — ledger-style metadata rows */}
+            <section
+              aria-label="Education"
+              className="mt-16 border-t border-placeholder pt-10"
+            >
+              <h2 className="text-[12px] uppercase tracking-wide text-meta">
+                Education
+              </h2>
+              <dl className="mt-4 space-y-1 text-[13px] leading-relaxed md:text-sm">
+                <div className="flex gap-2">
+                  <dt className="text-meta">School</dt>
+                  <dd>{education.school}</dd>
+                </div>
+                <div className="flex gap-2">
+                  <dt className="text-meta">Major</dt>
+                  <dd>{education.major}</dd>
+                </div>
+                <div className="flex gap-2">
+                  <dt className="text-meta">Concentrations</dt>
+                  <dd>{education.concentrations}</dd>
+                </div>
+                <div className="flex gap-2">
+                  <dt className="text-meta">GPA</dt>
+                  <dd>{education.gpa}</dd>
+                </div>
+              </dl>
+            </section>
           </div>
-        </section>
+        </div>
 
         {/* Currently — one section holding on-repeat, scent, and any future
             "current" slots; add a new grid cell rather than a new section. */}
