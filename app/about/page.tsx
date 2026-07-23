@@ -43,37 +43,36 @@ export default function AboutPage() {
       <SiteHeader />
 
       <main className="mt-16 pb-32 md:mt-24">
-        {/* Top — intro blocks left, photos right on large screens */}
-        <div className="grid gap-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16">
-          <div>
-            <h1 className="text-[32px] font-medium leading-none md:text-[40px]">
-              What I&apos;m bout.
-            </h1>
+        <h1 className="text-[32px] font-medium leading-none md:text-[40px]">
+          What I&apos;m bout.
+        </h1>
 
-            {/* Intro — labeled blocks */}
-            <div className="mt-12 space-y-10 md:mt-16 md:space-y-12">
-              {introSections.map((section) => (
-                <section
-                  key={section.label}
-                  aria-label={section.label}
-                  className="border-t border-placeholder pt-6"
-                >
-                  <h2 className="text-[12px] uppercase tracking-wide text-meta">
-                    {section.label}
-                  </h2>
-                  <p className="mt-3 max-w-2xl text-[15px] leading-relaxed">
-                    {section.body}
-                  </p>
-                </section>
-              ))}
-            </div>
+        {/* Intro blocks (left) + a sticky photos & education rail (right) on
+            large screens. lg:items-start lets the rail stick instead of stretch. */}
+        <div className="mt-12 grid gap-16 md:mt-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16 lg:items-start">
+          {/* Left — intro labeled blocks */}
+          <div className="space-y-10 md:space-y-12">
+            {introSections.map((section) => (
+              <section
+                key={section.label}
+                aria-label={section.label}
+                className="border-t border-placeholder pt-6"
+              >
+                <h2 className="text-[12px] uppercase tracking-wide text-meta">
+                  {section.label}
+                </h2>
+                <p className="mt-3 max-w-2xl text-[15px] leading-relaxed">
+                  {section.body}
+                </p>
+              </section>
+            ))}
           </div>
 
-          {/* Right rail — photos, then education */}
-          <div>
+          {/* Right rail — photos, then education; sticks while the intro scrolls */}
+          <div className="lg:sticky lg:top-16">
             <section
               aria-label="Photos"
-              className="border-t border-placeholder pt-10 lg:border-t-0 lg:pt-0"
+              className="border-t border-placeholder pt-6"
             >
               <h2 className="text-[12px] uppercase tracking-wide text-meta">
                 Photos
