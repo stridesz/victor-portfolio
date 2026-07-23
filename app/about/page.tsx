@@ -3,7 +3,7 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import AboutPhotos from "@/components/AboutPhotos";
 import AboutPlayer from "@/components/AboutPlayer";
-import { introSections, education, scent } from "@/data/about";
+import { introSections, education, scent, currentlyUpdated } from "@/data/about";
 
 export const metadata: Metadata = {
   title: "About · Victor Qi",
@@ -111,9 +111,14 @@ export default function AboutPage() {
           aria-label="Currently on repeat"
           className="mt-16 border-t border-placeholder pt-10 md:mt-20"
         >
-          <h2 className="text-[12px] uppercase tracking-wide text-meta">
-            Currently on repeat
-          </h2>
+          <div className="flex items-baseline justify-between gap-4">
+            <h2 className="text-[12px] uppercase tracking-wide text-meta">
+              Currently on repeat
+            </h2>
+            <span className="shrink-0 text-[12px] text-meta">
+              Updated {currentlyUpdated}
+            </span>
+          </div>
           <div className="mt-4 max-w-xl">
             <AboutPlayer />
           </div>
@@ -124,9 +129,14 @@ export default function AboutPage() {
           aria-label="Current scent"
           className="mt-16 border-t border-placeholder pt-10 md:mt-20"
         >
-          <h2 className="text-[12px] uppercase tracking-wide text-meta">
-            Current scent
-          </h2>
+          <div className="flex items-baseline justify-between gap-4">
+            <h2 className="text-[12px] uppercase tracking-wide text-meta">
+              Current scent
+            </h2>
+            <span className="shrink-0 text-[12px] text-meta">
+              Updated {currentlyUpdated}
+            </span>
+          </div>
           <div className="mt-4 flex max-w-xl items-center gap-4 md:gap-5">
             {scent.photo ? (
               <span className="relative block h-36 w-36 shrink-0 overflow-hidden md:h-72 md:w-72">
