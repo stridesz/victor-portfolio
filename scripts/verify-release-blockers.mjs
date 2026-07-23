@@ -96,7 +96,7 @@ try {
         return { left: box.left, right: box.right, width: box.width, height: box.height };
       };
       const controls = [
-        ...document.querySelectorAll('header a, [aria-label="Currently on repeat"] button, [aria-label="Currently on repeat"] input'),
+        ...document.querySelectorAll('header a, [aria-label="On repeat"] button, [aria-label="On repeat"] input'),
       ];
       return {
         innerWidth,

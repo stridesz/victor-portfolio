@@ -106,60 +106,60 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Currently on repeat */}
+        {/* Currently — one section holding on-repeat, scent, and any future
+            "current" slots; add a new grid cell rather than a new section. */}
         <section
-          aria-label="Currently on repeat"
+          aria-label="Currently"
           className="mt-16 border-t border-placeholder pt-10 md:mt-20"
         >
           <div className="flex items-baseline justify-between gap-4">
             <h2 className="text-[12px] uppercase tracking-wide text-meta">
-              Currently on repeat
+              Currently
             </h2>
             <span className="shrink-0 text-[12px] text-meta">
               Updated {currentlyUpdated}
             </span>
           </div>
-          <div className="mt-4 max-w-xl">
-            <AboutPlayer />
-          </div>
-        </section>
-
-        {/* Current scent */}
-        <section
-          aria-label="Current scent"
-          className="mt-16 border-t border-placeholder pt-10 md:mt-20"
-        >
-          <div className="flex items-baseline justify-between gap-4">
-            <h2 className="text-[12px] uppercase tracking-wide text-meta">
-              Current scent
-            </h2>
-            <span className="shrink-0 text-[12px] text-meta">
-              Updated {currentlyUpdated}
-            </span>
-          </div>
-          <div className="mt-4 flex max-w-xl items-center gap-4 md:gap-5">
-            {scent.photo ? (
-              <span className="relative block h-36 w-36 shrink-0 overflow-hidden md:h-72 md:w-72">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={scent.photo}
-                  alt={scent.name}
-                  className="h-full w-full object-contain"
-                />
-              </span>
-            ) : (
-              <span className="block h-36 w-36 shrink-0 bg-placeholder md:h-72 md:w-72" />
-            )}
-            <div className="text-[13px] leading-relaxed md:text-sm">
-              {scent.name ? (
-                <>
-                  <p>{scent.name}</p>
-                  {scent.house ? <p className="text-meta">{scent.house}</p> : null}
-                </>
-              ) : (
-                <p className="text-meta">Coming soon.</p>
-              )}
-            </div>
+          <div className="mt-10 grid gap-12 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] lg:gap-10">
+            <section aria-label="On repeat">
+              <h3 className="text-[12px] uppercase tracking-wide text-meta">
+                On repeat
+              </h3>
+              <div className="mt-5">
+                <AboutPlayer />
+              </div>
+            </section>
+            <section aria-label="Scent">
+              <h3 className="text-[12px] uppercase tracking-wide text-meta">
+                Scent
+              </h3>
+              <div className="mt-5 flex flex-col items-start gap-4">
+                {scent.photo ? (
+                  <span className="relative block h-40 w-40 shrink-0 overflow-hidden lg:h-56 lg:w-56">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={scent.photo}
+                      alt={scent.name}
+                      className="h-full w-full object-contain"
+                    />
+                  </span>
+                ) : (
+                  <span className="block h-40 w-40 shrink-0 bg-placeholder lg:h-56 lg:w-56" />
+                )}
+                <div className="text-[13px] leading-relaxed md:text-sm">
+                  {scent.name ? (
+                    <>
+                      <p>{scent.name}</p>
+                      {scent.house ? (
+                        <p className="text-meta">{scent.house}</p>
+                      ) : null}
+                    </>
+                  ) : (
+                    <p className="text-meta">Coming soon.</p>
+                  )}
+                </div>
+              </div>
+            </section>
           </div>
         </section>
       </main>

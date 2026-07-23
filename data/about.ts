@@ -102,6 +102,7 @@ export const scent = {
   photo: "/media/about/le-labo-jasmine-17.png",
 };
 
-// Shown beside the "current" sections (on repeat, scent) so the ledger reads as
-// maintained. Bump this whenever you swap the track or scent.
+// Shown beside the unified "Currently" section (on repeat, scent, and any
+// future slots) so the ledger reads as maintained. Bump this whenever you
+// swap any of the current items.
 export const currentlyUpdated = "July 2026";
